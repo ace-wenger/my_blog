@@ -1,0 +1,88 @@
+---
+title: "Transparent Search Strategy Development: Learning `litsearchr`"
+author: "Aaron Wenger"
+date: "2023-05-13"
+categories: ["learning R"] ["evidence synthesis"] ["tutorial"]
+code-annotations: select
+---
+
+<!--# add a callout blck that this is a work-in-progress-->
+
+## Introduction
+
+Search strategy development is a crucial step in evidence synthesis. 
+Well-formed strategies may capture previously unknown facets of the literature or reduce the number of irrelevant search results.
+
+The number of irrelevant records (precision) is generally less important than the proportion of relevant records retrieved (recall).
+It is unlikely that all relevant records can ever be retrieved but the search strategy could return a biased sample, which may influence the conclusions of the meta-study.
+This is especially true when using machine learning-assisted screening tools (e.g., "abstrackr") <!--# add a hyperlink here --> which reduces the burden of title/abstract screening.
+As such, the goal of search strategy development in a systematic review or meta-analysis is to maximize recall.
+
+Reporting guidelines have recognized the importance of the search strategy for the quality and transparency of systematic reviews <!--# add a link or citation -->.
+Recommendations for search strategy development have emphasized the importance of content knowledge and facility with database interfaces (such as Scopus, Web of Science, or EBSCOHost ERIC).
+This introduces a lot of judgement calls based on prior knowledge of the literature and numerous search string tests (the results of which are rarely saved).
+Expert judgement is an important part of any scholarly work but documentation...
+
+`litsearchr` enables quick evaluations of search results via text-mining and keyword co-occurrence networks <!--# citation-->. 
+Thus preliminary searches can be used to discover important terms to add to the search string.
+As this is done in R, all results can be easily documented along with significant decisions in search strategy development.
+In this demonstration, I show the use of `litsearchr` in developing a search strategy for a systematic review in science education.
+
+According to the `litsearchr` documentation, the workflow will look something like:
+
+1. Write and conduct naive search (probably only want journal articles)
+2. Import and extract terms using keywords and/or titles of references 
+3. Check terms and remove stopwords or clearly irrelevant/nonspecific terms
+4. Network Analysis: 
+  - join title and abstract of each reference (i.e., the "document" of DFM)
+  - create a document-feature-matrix (DFM) using terms and "documents"
+  - prune away least important terms
+5. group identified terms into topics and construct new search string
+  - (topic1_term1 OR topic1_term2) AND (topic2_term1 OR topic2_term2) etc.
+
+## Prerequisites 
+<!--# make this a callout block-->
+- Basic use of R and RStudio
+
+## 1 - Write and Conduct Naive Search
+The following inclusion criteria are assumed:
+
+1. 
+2. 
+3. 
+4.
+
+Based on these criteria and prior of the CM literature. My naive search strategy is this: "concept map\*" AND "science" AND ("educat\*" OR "teach\*" OR "learn\*" OR "student\*").
+In most evidence synthesis projects, five or more databases should be searched. 
+Here, only Scopus and Eric are used. 
+
+```{r}
+library(here)
+library(CiteSource)
+
+# Create list of search result files
+citation_files <- list.files(
+  path = here("data"), 
+  pattern = "\\.ris", 
+  full.names = TRUE
+)
+
+# Search results are imported
+citations <- read_citations(
+  citation_files,
+  cite_sources = c("ERIC", "Scopus"),
+  cite_labels = c("search", "search")
+)
+
+# Search results are deduplicated
+unique_citation <- dedup_citations(citations)
+```
+
+Note that here the `dedup_citations` function from `CiteSource` is used instead of the `remove_duplicates` function included in `litsearchr`.
+See <!--# another post/page --> for an explanation of different deduplication functions for citations available in R.
+
+
+<!-- #The `litsearchr` function is actually just a wrapper for the `deduplicate` function from the `synthesisr` package which has not been updated since May 2021.
+Similarly, the function from `CiteSource` is a wrapper for the `dedup_citations` function from the `ASySD` package.
+However, `ASySD` continues to receive updates and its performance has been compared with other automated dedpulcation tools <!--# also add link-->.
+
