@@ -1,0 +1,27 @@
+---
+title: "Transparent Search Strategy Development: Learning `litsearchr`"
+author: "Aaron Wenger"
+date: "2023-05-13"
+categories: ["learning R"] ["evidence synthesis"] ["tutorial"]
+---
+
+Search strategy development is a crucial step in evidence synthesis. 
+Well-formed strategies may capture previously unknown facets of the literature or reduce the number of irrelevant search results.
+
+The number of irrelevant records (precision) is generally less important than the proportion of relevant records retrieved (recall).
+It is unlikely that all relevant records can ever be retrieved but the search strategy could return a biased sample, which may influence the conclusions of the meta-study.
+This is especially true when using machine learning-assisted screening tools (e.g., "abstrackr") <!--# add a hyperlink here --> which reduces the burden of title/abstract screening.
+As such, the goal of search strategy development in a systematic review or meta-analysis is to maximize recall.
+
+Reporting guidelines have recognized the importance of the search strategy for the quality and transparency of systematic reviews <!--# add a link or citation -->.
+Recommendations for search strategy development have emphasized the importance of content knowledge and facility with database interfaces (such as Scopus, Web of Science, or EBSCOHost ERIC).
+This introduces a lot of judgement calls based on prior knowledge of the literature and numerous search string tests (the results of which are rarely saved).
+Expert judgement is an important part of any scholarly work but documentation...
+
+`litsearchr` enables quick evaluations of search results via text-mining and keyword co-occurrence networks <!--# citation-->. 
+Thus preliminary searches can be used to discover important terms to add to the search string.
+As this is done in R, all results can be easily documented along with significant decisions in search strategy development.
+In this demonstration, I show the use of `litsearchr` in developing a search strategy for a systematic review in science education.
+
+## Prerequisites 
+
