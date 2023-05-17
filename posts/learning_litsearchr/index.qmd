@@ -3,6 +3,7 @@ title: "Transparent Search Strategy Development: Learning `litsearchr`"
 author: "Aaron Wenger"
 date: "2023-05-13"
 categories: ["learning R"] ["evidence synthesis"] ["tutorial"]
+<<<<<<< HEAD
 code-annotations: select
 ---
 
@@ -28,6 +29,7 @@ Thus preliminary searches can be used to discover important terms to add to the 
 As this is done in R, all results can be easily documented along with significant decisions in search strategy development.
 In this demonstration, I show the use of `litsearchr` in developing a search strategy for a systematic review in science education.
 
+<<<<<<< HEAD
 According to the `litsearchr` documentation, the workflow will look something like:
 
 1. Write and conduct naive search (probably only want journal articles)
@@ -81,8 +83,10 @@ unique_citation <- dedup_citations(citations)
 Note that here the `dedup_citations` function from `CiteSource` is used instead of the `remove_duplicates` function included in `litsearchr`.
 See <!--# another post/page --> for an explanation of different deduplication functions for citations available in R.
 
-
 <!-- #The `litsearchr` function is actually just a wrapper for the `deduplicate` function from the `synthesisr` package which has not been updated since May 2021.
 Similarly, the function from `CiteSource` is a wrapper for the `dedup_citations` function from the `ASySD` package.
 However, `ASySD` continues to receive updates and its performance has been compared with other automated dedpulcation tools <!--# also add link-->.
+
+## Prerequisites 
+
 
