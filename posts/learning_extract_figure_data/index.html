@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>my_blog</title>
+<title>my_blog - Extracting Statistics From Figures in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +86,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">my_blog</span>
     </a>
   </div>
@@ -149,7 +109,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -172,13 +132,13 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">my_blog</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Extracting Statistics From Figures in R</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -186,250 +146,89 @@ window.Quarto = {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="data science">data science <span class="quarto-category-count">(3)</span></div><div class="category" data-category="learning R">learning R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="relational databases">relational databases <span class="quarto-category-count">(3)</span></div><div class="category" data-category="research reproducibility">research reproducibility <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tutorial">tutorial <span class="quarto-category-count">(4)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report very few summary or inferential statistics in text or in tables. Instead, results are reported in bar charts with means and standard errors. It is easy enough to eyeball values and get approximately correct figures, but values obtained in this way are difficult to reproduce.</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="shinyDigitize_graph1.JPG" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="shinyDigitize_graph2.JPG" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p>Example Graphs</p>
+</div>
+</div>
+</div>
+<p>Back in my CHEM 101 days, I learned a couple important concepts in scientific measurement. First, decide upon a method or technique and stick to it. For example, when measuring out liquid in graduated cylinders chemists always spot values at the bottom of the meniscus rather than the top. Second, it is important to have some understanding of how precise you can be while maintaining accuracy and reproducibility. Reading down to 0.1mL on a 100mL graduate cylinder marked off in 1mL increments is probably not justifiable, but reading it to the nearest 0.5mL probably is.</p>
+<p>Eyeballing values off a chart without a clear method is like taking scientific measurements with a common measuring cup. One can improve the measurement by taking additional steps (like overfilling, then scraping off the excess with knife) but these steps make an already time-consuming process more time consuming. Likewise, graphs and charts can be carefully annotated, zooming in and adding reference lines, but this is cumbersome and imprecise. What is needed is a software tool that minimizes effort and leads to reproducible values.</p>
+<section id="tools-for-data-extraction" class="level1">
+<h1>Tools for Data Extraction</h1>
+<p>Different software tools exist that can digitize graphs. Some of these can automatically detect and extract data from The following are just those that I have tried to use:</p>
+<ol type="1">
+<li>Plot Digitizer</li>
+<li><code>metagear</code></li>
+<li><code>juicr</code></li>
+<li><code>metaDigitise</code> and <code>shinyDigitise</code></li>
+</ol>
+<p><a href="https://plotdigitizer.com">Plot Digitzer</a> has been around for some time and can be downloaded as a free, standalone application. If I were to to use Plot Digitizer I would probably use the online app version which has a better GUI and allows for different chart types to be selected. Unfortunately, the most useful features are kept for a paid version (at least its a one-time payment!) and the free version simply allows coordinates to be selected and exported.</p>
+<p>The other three are R packages that I have tried. <code>metagear</code> has several functions to facilitate systematic reviews and meta-analyses a few of which automatically extract data from select plot types <span class="citation" data-cites="LajFacilitatingSystematicReviews2016">(<a href="#ref-LajFacilitatingSystematicReviews2016" role="doc-biblioref">Lajeunesse 2016</a>)</span>. These functions take the plot as an argument (it’s file path that is) and returns a dataframe with the detected data points. Unfortunately, this automatic data extraction has not worked for me in the few cases that I attempted. The defaults of the function can be changed to account for variations in plot style and quality, but after a couple hours of fiddling, I couldn’t make it work for me. Also, it hasn’t been updated since 2021 (as of May 2024) and it is unclear when it will receive improvements.</p>
+<p><code>juicr</code> is an extension to the data extraction functions in <code>metagear</code> which adds a GUI and enables semi-automated functionality <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref">Ivimey-Cook et al. 2023</a>)</span>. Unfortunately, I ran into the same issues with the automatic data extraction as I did for <code>metagear</code>. <code>juicr</code> is in beta but it is unclear when it will receive further work, especially as it seems that only one person (Marc Lajeunesse) is contributing to its development. If this package does get more attention, I will definitely revisit it for future projects.</p>
+</section>
+<section id="metadigitise-and-shinydigitise" class="level1">
+<h1><code>metaDigitise</code> and <code>shinyDigitise</code></h1>
+<p>The <code>metaDigitise</code> R package is strictly for manual data extraction, but it provides very useful guardrails that greatly reduce the potential for user error and saves annotated plots for reproducible results. This package was introduced in 2016 and continues to be actively maintained <span class="citation" data-cites="PNNReproducibleFlexibleHighthroughput2019">(<a href="#ref-PNNReproducibleFlexibleHighthroughput2019" role="doc-biblioref">Pick, Nakagawa, and Noble 2019</a>)</span>. In 2022, the package authors introduced a shiny app that provides a GUI for a better user experience <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref">Ivimey-Cook et al. 2023</a>)</span>.</p>
+<p>The workflow is quite simple and begins with a function call to initialize the shiny app. In that app the user is asked to provide a folder path where plot images are kept and whether they want to edit previous extractions or extract from new plots. The steps to complete data extraction are clearly shown and the user is able to go back and change options on previous steps.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="shinyDigitize_screenshot1.JPG" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of the <code>shinyDigitise</code> GUI with a new extraction in progress</figcaption>
+</figure>
+</div>
+<p>Data extraction requires the user to select points on the image and what values those points are associated with. The examples in this blog post are mean/error plots but <code>shinyDigitise</code> works with five other plot types. The end result includes an annotated version of the plot and a dataframe of extracted values along with metadata, such as the file it was extracted from</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="shinyDigitize_screenshot2.JPG" class="img-fluid figure-img"></p>
+<figcaption>Screenshot of a complete extraction</figcaption>
+</figure>
+</div>
+<p>One of the quality features is that the sample sizes of groups can be inputted which allows <code>shinyDigitise</code> to automatically calculate standard deviation from standard errors which are more commonly plotted.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>I hope this look at <code>shinyDigitise</code> and other tools for data extraction was useful Support for manual data extraction is very helpful and goes a long way towards reproducible effect size calculations for meta-analyses. I do look forward to the development of <code>juicr</code> and other tools that automate or semi-automate this process as this is still relatively time-intensive. My guess is that more collaborations between software developers and research synthesists are needed to develop such tools.</p>
 
 
 
+</section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1715719659977" data-listing-reading-time-sort="5" data-listing-word-count-sort="849">
-<div class="thumbnail">
-<p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p><a href="./posts/learning_extract_figure_data/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\learning_extract_figure_data\shinyDigitize_graph1.JPG"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-INN+AdviceImprovingReproducibility2023" class="csl-entry" role="listitem">
+Ivimey-Cook, Edward R., Daniel W. A. Noble, Shinichi Nakagawa, Marc J. Lajeunesse, and Joel L. Pick. 2023. <span>“Advice for Improving the Reproducibility of Data Extraction in Meta-Analysis.”</span> <em>Research Synthesis Methods</em> 14: 911–15.
 </div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external">Extracting Statistics From Figures in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a>
+<div id="ref-LajFacilitatingSystematicReviews2016" class="csl-entry" role="listitem">
+Lajeunesse, Marc J. 2016. <span>“Facilitating Systematic Reviews, Data Extraction and Meta-Analysis with the Metagear Package for r.”</span> <em>Methods in Ecology and Evolution</em> 7 (3): 323–30. <a href="https://doi.org/10.1111/2041-210X.12472">https://doi.org/10.1111/2041-210X.12472</a>.
 </div>
-<div class="listing-description">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external">I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report…</a>
+<div id="ref-PNNReproducibleFlexibleHighthroughput2019" class="csl-entry" role="listitem">
+Pick, Joel L., Shinichi Nakagawa, and Daniel W. A. Noble. 2019. <span>“Reproducible, Flexible and High-Throughput Data Extraction from Primary Literature: <span class="nocase">The metaDigitise</span> r Package.”</span> <em>Methods in Ecology and Evolution</em> 10 (3): 426–31. <a href="https://doi.org/10.1111/2041-210X.13118">https://doi.org/10.1111/2041-210X.13118</a>.
 </div>
-</div>
-<div class="metadata">
-<p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p><a href="./posts/learning_extract_figure_data/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="research reproducibility,learning R,tutorial" data-listing-date-sort="1706072400000" data-listing-file-modified-sort="1706709735826" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="901">
-<div class="thumbnail">
-<p><a href="./posts/learning_renv/index.html" class="no-external"></a></p><a href="./posts/learning_renv/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_renv/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_renv/index.html" class="no-external">Learing <code>renv</code> for Reproduciblity</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_renv/index.html" class="no-external">… and other benefits</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('research reproducibility'); return false;">
-research reproducibility
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_renv/index.html" class="no-external">Organizing, managing, and executing reproducible research projects is hard because there are so many possible reasons why a project cannot be reproduced.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_renv/index.html" class="no-external">
-<div class="listing-date">
-Jan 24, 2024
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1687492800000" data-listing-file-modified-sort="1692212241992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1107">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">Creating and Using Relational Databases, Part 2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">The following example uses data on Michigan K-12 public schools to demonstrate how easy it can be to get “flat” data into a relational database format and quickly produce…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1687492800000" data-listing-file-modified-sort="1706198400313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1044">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">Creating and Using Relational Databases, Part 3</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">blah blah</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1683950400000" data-listing-file-modified-sort="1692212130861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="653">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\learning_relational_databases_p1\tidy_data_figure.png" alt="Figure 1"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">Creating and Using Relational Databases, Part 1</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">Processing and structuring data for summary, statistical analysis, and visualization is critical for reproducible workflows. Analysis scripts that start with well-prepared…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="news" data-listing-date-sort="1683950400000" data-listing-file-modified-sort="1684263392978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">This is the first post in a Quarto blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2023
-</div>
-<div class="listing-author">
-Tristan O’Malley
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

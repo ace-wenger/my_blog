@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aaron Wenger">
+<meta name="dcterms.date" content="2024-01-24">
 
-<title>my_blog</title>
+<title>my_blog - Learing renv for Reproduciblity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +22,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +102,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">my_blog</span>
     </a>
   </div>
@@ -149,7 +125,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -172,264 +148,91 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">my_blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Untitled</h1>
+            <p class="subtitle lead">… and other benefits</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">research reproducibility</div>
+                <div class="quarto-category">learning R</div>
+                <div class="quarto-category">tutorial</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aaron Wenger </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 24, 2024</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="data science">data science <span class="quarto-category-count">(3)</span></div><div class="category" data-category="learning R">learning R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="relational databases">relational databases <span class="quarto-category-count">(3)</span></div><div class="category" data-category="research reproducibility">research reproducibility <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tutorial">tutorial <span class="quarto-category-count">(4)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>Organizing, managing, and executing reproducible research projects is hard because there are so many possible reasons why a project cannot be reproduced.</p>
+<pre><code>- No data? Not reproducible.
+- No code? Not reproducible.
+- Software is unavailable? Not reproducible.
+- Computational environment is unspecified? Maybe.
+- Software versions are unknown? Eventually no.</code></pre>
+<p>We think that we have one of these threats to reproducibility whipped, then some unexpected development or complication throws it all back in doubt. I think this is especially true for someone like me: an intermediate R user who has no background in computer science or programming other than what I have learned on my own in the last couple years. This post reflects on my learning how to use <code>renv</code> as part of a reproducible research workflow and how I have handled a couple problems along the way.</p>
+<section id="welcome-renv" class="level1">
+<h1>Welcome <code>renv</code></h1>
+<p>The <code>renv</code> package solves (more or less) the software versioning issue. With a couple commands all R package versions are recorded in a file, allowing the R package environment of the project to be rebuilt from scratch. I have used <code>renv</code> for several months now and have appreciated how much it has simplified the task of installing and staying current with package updates. It has also streamlined the storage of R packages on my computer.</p>
+<p>In a nutshell, here’s how it works. Once <code>renv</code> is installed <code>init()</code> creates a lockfile (<code>renv.lock</code>) that holds package version information and details about how packages were installed. For example, if a package is installed from github, that is recorded along with the username of the repository. When the project is shared, the lockfile can be read by <code>restore()</code> to install all packages exactly as they are recorded. The <code>snapshot()</code> function adds additional packages as they are installed in the project and <code>status()</code> reports packages that need to be installed and/or added to the lockfile. It’s really that easy!</p>
+</section>
+<section id="first-headache" class="level1">
+<h1>First Headache</h1>
+<p>Learning to use <code>renv</code> and incorporating it into my workflow wasn’t without a couple headaches. At the start, I couldn’t use <code>renv::</code>install()<code>which works similarly to base</code>renv::install.packages()<code>but is more flexible and intuitive. I would run</code>renv::<code>install("somepackage")</code> and an error would be returned, to the effect that “package ‘somepackage’ is not available” Yet <code>utils::install.packages()</code>, the “base” package installation function (utils is part of the R distribution), worked just fine.</p>
+<p>Apparently many others have had this <a href="https://community.rstudio.com/t/cant-install-packages-with-renv/96696">problem</a>. What it came down to for me is that R and <code>renv</code> were using different download methods. These methods can be checked using <code>getOption("download.file.method")</code> and <code>renv:::renv_download_method()</code> for R and <code>renv</code> respectively. It seems for me (on Windows) that the two available methods are <code>lib</code> and <code>libcurl</code>. These are closely related software libraries/tools created and maintained by the cURL (Client for URLs) project which enable internet file transfers.</p>
+<p>I resolved this problem by including one line in my Rstudio project <code>.Rprofile</code> file: <code>Sys.setenv(RENV_DOWNLOAD_FILE_METHOD = "libcurl")</code>. Being in the <code>.Rprofile</code> within the project, this command is always run when loading up the project in Rstudio. A more robust solution that dynamically retrieves the download method currently used by R is what I use now: <code>Sys.setenv(RENV_DOWNLOAD_METHOD = getOption("download.file.method"))</code> (see this <a href="https://stackoverflow.com/questions/73759605/r-renv-suddently-broke-and-now-i-cant-download-any-packages">stackoverflow question</a>)</p>
+</section>
+<section id="second-headache" class="level1">
+<h1>Second Headache</h1>
+<p>That first problem seemed to happen again some months later. Again, <code>renv::install()</code> would return an error stating that the package was not available. Apparently, the repository being targeted by <code>renv</code> was the issue. I don’t know what caused it, but I am guessing some update in the backend of renv or its dependencies was responsible.</p>
+<p>The call <code>getOption("repos")</code> returns the repository currently being used which for me was something like <code>https://packagemanager.posit.co/cran/</code>. I resolved the problem by manually setting the “repos” option in my project’s <code>.Rprofile</code> file. Thus after solving these two headaches, I start new Rstudio projects using <code>renv</code> with my <code>.Rprofile</code> looking like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"renv/activate.R"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">RENV_DOWNLOAD_FILE_METHOD =</span> <span class="fu">getOption</span>(<span class="st">"download.file.method"</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">"https://cloud.r-project.org"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="unanticipated-benefits" class="level1">
+<h1>Unanticipated Benefits</h1>
+<p>The above problems were really not too hard to resolve even for someone with a limited software knowledge base like me. The documentation and support provided by Kevin Ushey, principal developer of <code>renv</code>, and the rest of the Posit team really is superb. I have no doubt that this package will remain stable and functioning going ahead.</p>
+<p>As I have adopted <code>renv</code> into my normal project workflow I have discovered a few benefits beyond supporting research reproducibility. First, the <code>renv::install()</code> and <code>renv::update()</code> functions are very smooth and intuitive, much better than <code>utils::install.packages()</code>. In particular, I run <code>renv::update()</code> every week or month to automatically update all project packages - including <code>renv</code> itself! Both functions are faster than the <code>utils</code> function and provide more informative errors.</p>
+<p>A second benefit is the efficient caching of R packages on my computer. After the first hundred or so installed packages, the disk space required becomes noticeable. Before <code>renv</code>, I occasionally installed packages twice in different locations and accumulated different versions over time. <code>renv</code> keeps a common cache for the device which it then links to in individual <code>renv</code> projects. This means that for a given package and version, it will only ever be installed once. My computer only has a 200GB hard drive so saving a GB here or there is very nice.</p>
+<p>A third benefit is the quick installation of new-to-me packages. Often dependencies are already included and built in my cache so all <code>renv</code> has to do is link to the cache for that dependency. Thus, downloads and builds from binaries are minimized and new packages are ready to use in mere moments.</p>
+<p>I think all scientists and researchers who use R and who are committed to research reproducibility should adopt <code>renv</code> into their workflow.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1715719659977" data-listing-reading-time-sort="5" data-listing-word-count-sort="849">
-<div class="thumbnail">
-<p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p><a href="./posts/learning_extract_figure_data/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\learning_extract_figure_data\shinyDigitize_graph1.JPG"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external">Extracting Statistics From Figures in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external">I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p><a href="./posts/learning_extract_figure_data/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="research reproducibility,learning R,tutorial" data-listing-date-sort="1706072400000" data-listing-file-modified-sort="1706709735826" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="901">
-<div class="thumbnail">
-<p><a href="./posts/learning_renv/index.html" class="no-external"></a></p><a href="./posts/learning_renv/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_renv/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_renv/index.html" class="no-external">Learing <code>renv</code> for Reproduciblity</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_renv/index.html" class="no-external">… and other benefits</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('research reproducibility'); return false;">
-research reproducibility
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_renv/index.html" class="no-external">Organizing, managing, and executing reproducible research projects is hard because there are so many possible reasons why a project cannot be reproduced.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_renv/index.html" class="no-external">
-<div class="listing-date">
-Jan 24, 2024
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1687492800000" data-listing-file-modified-sort="1692212241992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1107">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">Creating and Using Relational Databases, Part 2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">The following example uses data on Michigan K-12 public schools to demonstrate how easy it can be to get “flat” data into a relational database format and quickly produce…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1687492800000" data-listing-file-modified-sort="1706198400313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1044">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">Creating and Using Relational Databases, Part 3</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">blah blah</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1683950400000" data-listing-file-modified-sort="1692212130861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="653">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\learning_relational_databases_p1\tidy_data_figure.png" alt="Figure 1"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">Creating and Using Relational Databases, Part 1</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">Processing and structuring data for summary, statistical analysis, and visualization is critical for reproducible workflows. Analysis scripts that start with well-prepared…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="news" data-listing-date-sort="1683950400000" data-listing-file-modified-sort="1684263392978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">This is the first post in a Quarto blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2023
-</div>
-<div class="listing-author">
-Tristan O’Malley
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

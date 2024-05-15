@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aaron Wenger">
+<meta name="dcterms.date" content="2023-05-13">
 
-<title>my_blog</title>
+<title>my_blog - Creating and Using Relational Databases, Part 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +22,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,77 +88,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">my_blog</span>
     </a>
   </div>
@@ -149,7 +111,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -172,264 +134,83 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">my_blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Creating and Using Relational Databases, Part 1</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">relational databases</div>
+                <div class="quarto-category">learning R</div>
+                <div class="quarto-category">data science</div>
+                <div class="quarto-category">tutorial</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aaron Wenger </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 13, 2023</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="data science">data science <span class="quarto-category-count">(3)</span></div><div class="category" data-category="learning R">learning R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="news">news <span class="quarto-category-count">(1)</span></div><div class="category" data-category="relational databases">relational databases <span class="quarto-category-count">(3)</span></div><div class="category" data-category="research reproducibility">research reproducibility <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tutorial">tutorial <span class="quarto-category-count">(4)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p>Processing and structuring data for summary, statistical analysis, and visualization is critical for reproducible workflows. Analysis scripts that start with well-prepared data are cleaner, facilitate easy exploratory data analysis, and are extensible. But what does it mean for data to be “well-prepared?”</p>
+<p>Well-prepared data is structured with the data analysis tools in mind. The <code>tidyverse</code> tools in R - and other tools which follow “tidy data” conventions - are “tidy tools” meaning they take tidy data and output tidy data.</p>
+<p>Hadley Wickham wrote a technical paper explaining the concepts of tidy data and tidy tools <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref">Wickham 2014</a>)</span>. Thankfully he also wrote a very approachable book that explains tidy data in simpler terms: <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a>.</p>
+<p>In a few words, tidy data follows three principles:</p>
+<ol type="1">
+<li>each variable has its own column</li>
+<li>each observation has its own row</li>
+<li>each value has its own cell</li>
+</ol>
+<p>The third principle may seem obvious but it becomes important in more complex data structures. <img src="tidy_data_figure.png" class="img-fluid" alt="Figure 1"> <!--# caption isn't showing in preview -->, from <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a> shows these three principles visually.</p>
+<section id="introduction-to-relational-databases" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-relational-databases">Introduction to Relational Databases</h2>
+<p>Often when data is collected, it will have a nested or hierarchical structure. This especially true for education data. For instance, students are nested in classrooms which are nested in schools, which are nested in districts … you get the point. At each level of nesting different variables will be relevant which affects data collection and analysis. For example, students have test scores and schools have average test scores - if all individual test scores are collected, it doesn’t make sense to contact the principle and collect the school average score. And yet we may still contact the principle and collect other pieces of information about the school.</p>
+<p>Each level in a hierarchical dataset is called an <em>observational unit</em>. In order to get this data into a tidy format it will need to restructured so that each observational unit gets it own table.</p>
+<p>Remember the third principle of tidy data? The third principle may be expressed differently as “each value is expressed only once” (my words) or “each observational unit has its own table” <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref">Wickham 2014</a>)</span>. Thus, each level of nestedness in the dataset - each observational unit - gets its own table. In the above example, all student observations are collected on one table and all school observations in another.</p>
+<p>A set of tables are related to each using <em>key</em> variables, which allow the observations in one table to be related to observations in another. For example, in order to identify the school a student attends, a <em>school_id</em> variable is given to each student.</p>
+<p>There are two types of keys. One primary key in included in each table to uniquely identify each observation. One or more foreign keys are included in each table in order to relate observations to those tables that the key is primary. So on the student table, “student_id” is the primary key and “school_id” is the foreign key, corresponding to the primary key on the school table.</p>
+</section>
+<section id="why-use-relational-databases" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-relational-databases">Why Use Relational Databases?</h2>
+<p>From a quick reading through of the Wikipedia page on the <a href="https://en.wikipedia.org/wiki/Relational_model">relational model</a> (data science term for relational databases) there are alternative ways to structure nested data. What those alternatives are and what the relative theoretical advantages of the relational model are, I cannot say. Perhaps that’s fodder for another post.</p>
+<p>Relational databases do seem to have the advantage of being human- and machine-readable. This means that code can be easily written to manipulate a relational database and people can also open up an excel spreadsheet and peruse each table.</p>
+<p>Tidyverse’s <code>dplyr</code> package has “two table verbs” which make it super easy to manipulate data structured as a relational database. One table verbs are functions that take one table as input, perform some operation, and output the resulting table. Two table verbs do the very same thing except they take <em>two</em> tables as input and require a matching variable, a key.</p>
+<p>In the next post <!--# link here --> an example of a “flat” data file will be used to show how a relational database can be constructed and used to generate summary statistics.</p>
 
 
 
+</section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1715719659977" data-listing-reading-time-sort="5" data-listing-word-count-sort="849">
-<div class="thumbnail">
-<p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p><a href="./posts/learning_extract_figure_data/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\learning_extract_figure_data\shinyDigitize_graph1.JPG"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external">Extracting Statistics From Figures in R</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_extract_figure_data/index.html" class="no-external">I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/learning_extract_figure_data/index.html" class="no-external"></a></p><a href="./posts/learning_extract_figure_data/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="research reproducibility,learning R,tutorial" data-listing-date-sort="1706072400000" data-listing-file-modified-sort="1706709735826" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="901">
-<div class="thumbnail">
-<p><a href="./posts/learning_renv/index.html" class="no-external"></a></p><a href="./posts/learning_renv/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_renv/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_renv/index.html" class="no-external">Learing <code>renv</code> for Reproduciblity</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_renv/index.html" class="no-external">… and other benefits</a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('research reproducibility'); return false;">
-research reproducibility
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_renv/index.html" class="no-external">Organizing, managing, and executing reproducible research projects is hard because there are so many possible reasons why a project cannot be reproduced.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_renv/index.html" class="no-external">
-<div class="listing-date">
-Jan 24, 2024
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1687492800000" data-listing-file-modified-sort="1692212241992" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1107">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">Creating and Using Relational Databases, Part 2</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">The following example uses data on Michigan K-12 public schools to demonstrate how easy it can be to get “flat” data into a relational database format and quickly produce…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p2/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1687492800000" data-listing-file-modified-sort="1706198400313" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1044">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">Creating and Using Relational Databases, Part 3</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">blah blah</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p3/index.html" class="no-external">
-<div class="listing-date">
-Jun 23, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="relational databases,learning R,data science,tutorial" data-listing-date-sort="1683950400000" data-listing-file-modified-sort="1692212130861" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="653">
-<div class="thumbnail">
-<p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a></p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\learning_relational_databases_p1\tidy_data_figure.png" alt="Figure 1"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">Creating and Using Relational Databases, Part 1</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('relational databases'); return false;">
-relational databases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('learning R'); return false;">
-learning R
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('data science'); return false;">
-data science
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tutorial'); return false;">
-tutorial
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">Processing and structuring data for summary, statistical analysis, and visualization is critical for reproducible workflows. Analysis scripts that start with well-prepared…</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning_relational_databases_p1/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2023
-</div>
-<div class="listing-author">
-Aaron Wenger
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="news" data-listing-date-sort="1683950400000" data-listing-file-modified-sort="1684263392978" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('news'); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">This is the first post in a Quarto blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-May 13, 2023
-</div>
-<div class="listing-author">
-Tristan O’Malley
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-WicTidyData2014" class="csl-entry" role="listitem">
+Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of Statistical Software</em> 59 (10).
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
