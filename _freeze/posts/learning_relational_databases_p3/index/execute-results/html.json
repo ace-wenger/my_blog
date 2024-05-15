@@ -1,0 +1,18 @@
+{
+  "hash": "40edc58a7692b06adf23c399bc52bb19",
+  "result": {
+    "markdown": "---\ntitle: \"Creating and Using Relational Databases, Part 3\"\nauthor: \"Aaron Wenger\"\ndate: \"2023-06-23\"\ncategories: \n  - relational databases\n  - learning R\n  - data science\n  - tutorial\nexecute: \n  echo: false\n  warning: false\nformat:\n  html:\n    df-print: paged\n---\n\n::: {.cell}\n\n:::\n\n\n\nblah blah\n\n## Adding MiSTEM Region and School/District Counts\n\nUsing two-table verbs from `dplyer` (`left_join()` in the code below), district counts are easily added to the ISD table using `isd_code` as a key, matching each district to its corresponding ISD.\nLikewise, school counts are added to both ISD and district tables.\n\n\n::: {.cell}\n\n```{.r .cell-code  code-fold=\"true\"}\n## these are objects save in part 2\n# write_csv(mischool_database_sch, here(filepath, \"mischool_database_sch.csv\"))\n# write_csv(mischool_database_dst, here(filepath, \"mischool_database_dst.csv\"))\n# write_csv(mischool_database_isd, here(filepath, \"mischool_database_isd.csv\"))\n\n# mischool_database_isd <- mischool_database_isd |> \n#   left_join(\n#     mischool_database_dst |> \n#       group_by(isd_code) |> \n#       summarize(count_dst = n())\n#   ) |> \n#   left_join(\n#     mischool_database_sch |> \n#       group_by(isd_code) |> \n#       summarize(count_sch = n())\n#   )\n# \n# mischool_database_dst <- mischool_database_dst |> \n#   left_join(\n#     mischool_database_sch |> \n#       group_by(dst_code) |> \n#       summarize(count_sch = n())\n#   )\n\n\n# select and display district/school counts\n```\n:::\n\n\nIn Michigan, the MiSTEM network is a ----------.\nThere are 15 MiSTEM regions ---------.\nIn order to add the MiSTEM region ------------.\n\nHere's the MiSTEM region directory -------.\nAnd adding to databases\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n## Adding Student Count Information\n\n\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n\n## Creating Visualizations\n\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\r\n<script src=\"../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\r\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

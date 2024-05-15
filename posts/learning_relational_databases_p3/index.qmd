@@ -1,0 +1,240 @@
+---
+title: "Creating and Using Relational Databases, Part 3"
+author: "Aaron Wenger"
+date: "2023-06-23"
+categories: 
+  - relational databases
+  - learning R
+  - data science
+  - tutorial
+execute: 
+  echo: false
+  warning: false
+format:
+  html:
+    df-print: paged
+---
+
+```{r}
+#| label: Setup and data import
+
+library(tidyverse)
+library(here)
+library(knitr)
+```
+
+
+blah blah
+
+## Adding MiSTEM Region and School/District Counts
+
+Using two-table verbs from `dplyer` (`left_join()` in the code below), district counts are easily added to the ISD table using `isd_code` as a key, matching each district to its corresponding ISD.
+Likewise, school counts are added to both ISD and district tables.
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+## these are objects save in part 2
+# write_csv(mischool_database_sch, here(filepath, "mischool_database_sch.csv"))
+# write_csv(mischool_database_dst, here(filepath, "mischool_database_dst.csv"))
+# write_csv(mischool_database_isd, here(filepath, "mischool_database_isd.csv"))
+
+# mischool_database_isd <- mischool_database_isd |> 
+#   left_join(
+#     mischool_database_dst |> 
+#       group_by(isd_code) |> 
+#       summarize(count_dst = n())
+#   ) |> 
+#   left_join(
+#     mischool_database_sch |> 
+#       group_by(isd_code) |> 
+#       summarize(count_sch = n())
+#   )
+# 
+# mischool_database_dst <- mischool_database_dst |> 
+#   left_join(
+#     mischool_database_sch |> 
+#       group_by(dst_code) |> 
+#       summarize(count_sch = n())
+#   )
+
+
+# select and display district/school counts
+```
+
+In Michigan, the MiSTEM network is a ----------.
+There are 15 MiSTEM regions ---------.
+In order to add the MiSTEM region ------------.
+
+Here's the MiSTEM region directory -------.
+And adding to databases
+
+```{r}
+# region_isd <- read_csv(
+#   here(filepath, "23-05-17_MiS_Region-ISD-Directory.csv"), 
+#   show_col_types = FALSE
+# )
+# 
+# region_isd
+```
+
+
+```{r}
+# mischool_database_isd <- mischool_database_isd |> 
+#   left_join(
+#     region_isd |> select(included_isd_code, region_code), 
+#     join_by(isd_code == included_isd_code)
+#   ) |> 
+#   mutate(
+#     region_code = str_pad(region_code, width = 2, side = "left", pad = "0")
+#   )
+```
+
+## Adding Student Count Information
+
+
+
+```{r}
+# mischool_std_count <- read_csv(
+#   here(filepath, "23-05_Student-Counts_MiSchoolData.csv"), 
+#   show_col_types = FALSE
+# )
+# 
+# glimpse(mischool_std_count)
+```
+
+```{r}
+# mischool_std_count_0 <- mischool_std_count |> 
+#   select(
+#     isd_code = ISDCode,
+#     # isd_name = ISDName,
+#     dst_code = DistrictCode,
+#     # dst_name = DistrictName,
+#     sch_code = BuildingCode,
+#     sch_name = BuildingName,
+#     # entity_type2_name = EntityType,
+#     # county_name = CountyName,
+#     stdcount_total = TOTAL_ENROLLMENT,
+#     stdcount_male = MALE_ENROLLMENT,
+#     stdcount_female = FEMALE_ENROLLMENT,
+#     stdcount_eth_ntv = AMERICAN_INDIAN_ENROLLMENT,
+#     stdcount_eth_asn = ASIAN_ENROLLMENT,
+#     stdcount_eth_blk = AFRICAN_AMERICAN_ENROLLMENT,
+#     stdcount_eth_ltn = HISPANIC_ENROLLMENT,
+#     stdcount_eth_haw = HAWAIIAN_ENROLLMENT,
+#     stdcount_eth_wht = WHITE_ENROLLMENT,
+#     stdcount_eth_mxd = TWO_OR_MORE_RACES_ENROLLMENT,
+#     stdcount_grd_middlecollege = EARLY_MIDDLE_COLLEGE_ENROLLMENT,
+#     stdcount_grd_prk = PREKINDERGARTEN_ENROLLMENT,
+#     stdcount_grd_k = KINDERGARTEN_ENROLLMENT,
+#     stdcount_grd_1 = GRADE_1_ENROLLMENT,
+#     stdcount_grd_2 = GRADE_2_ENROLLMENT,
+#     stdcount_grd_3 = GRADE_3_ENROLLMENT,
+#     stdcount_grd_4 = GRADE_4_ENROLLMENT,
+#     stdcount_grd_5 = GRADE_5_ENROLLMENT,
+#     stdcount_grd_6 = GRADE_6_ENROLLMENT,
+#     stdcount_grd_7 = GRADE_7_ENROLLMENT,
+#     stdcount_grd_8 = GRADE_8_ENROLLMENT,
+#     stdcount_grd_9 = GRADE_9_ENROLLMENT,
+#     stdcount_grd_10 = GRADE_10_ENROLLMENT,
+#     stdcount_grd_11 = GRADE_11_ENROLLMENT,
+#     stdcount_grd_12 = GRADE_12_ENROLLMENT,
+#     stdcount_grd_ungraded = UNGRADED_ENROLLMENT,
+#     stdcount_ecn_disadvantaged = ECONOMIC_DISADVANTAGED_ENROLLMENT,
+#     stdcount_special_ed = SPECIAL_EDUCATION_ENROLLMENT,
+#     stdcount_ell = ENGLISH_LANGUAGE_LEARNERS_ENROLLMENT
+#   ) 
+# 
+# mischool_std_count_0 |> count(isd_code) |> filter(n > 1)
+# mischool_std_count_0 |> count(dst_code) |> filter(n > 1)
+# mischool_std_count_0 |> count(sch_code) |> filter(n > 1)
+# mischool_std_count_0 |> count(isd_code, dst_code, sch_code) |> filter(n > 1)
+```
+
+```{r}
+# mischool_std_count_sch <- mischool_std_count_0 |> 
+#   filter(sch_name != "All Buildings") |> 
+#   mutate(
+#     sch_prop_ecn_disadvantaged = 
+#       as.numeric(stdcount_ecn_disadvantaged) / stdcount_total,
+#     sch_status_title1_15 = if_else(sch_prop_ecn_disadvantaged >= 0.15, 1, 0),
+#     sch_status_title1_40 = if_else(sch_prop_ecn_disadvantaged >= 0.40, 1, 0),
+#     sch_prop_eth_min = (stdcount_total - stdcount_eth_wht) / stdcount_total,
+#     sch_status_majority_minority = if_else(sch_prop_eth_min >= 0.5, 1, 0)
+#   )
+# 
+# mischool_std_count_dst <- mischool_std_count_sch |> 
+#   group_by(dst_code) |> 
+#   summarize(
+#     stdcount_total = sum(stdcount_total),
+#     stdcount_ecn_disadvantaged = sum(
+#       as.numeric(stdcount_ecn_disadvantaged), na.rm = TRUE),
+#     stdcount_eth_wht = sum(stdcount_eth_wht)
+#   ) |> 
+#   mutate(
+#     dst_prop_ecn_disadvantaged = 
+#       as.numeric(stdcount_ecn_disadvantaged) / stdcount_total,
+#     dst_status_title1_15 = if_else(dst_prop_ecn_disadvantaged >= 0.15, 1, 0),
+#     dst_status_title1_40 = if_else(dst_prop_ecn_disadvantaged >= 0.40, 1, 0),
+#     dst_prop_eth_min = (stdcount_total - stdcount_eth_wht) / stdcount_total,
+#     dst_status_majority_minority = if_else(dst_prop_eth_min >= 0.5, 1, 0)
+#   )
+# 
+# mischool_std_count_isd <- mischool_std_count_sch |> 
+#   group_by(isd_code) |> 
+#   summarize(
+#     stdcount_total = sum(stdcount_total),
+#     stdcount_ecn_disadvantaged = sum(
+#       as.numeric(stdcount_ecn_disadvantaged), na.rm = TRUE),
+#     stdcount_eth_wht = sum(stdcount_eth_wht)
+#   ) |> 
+#   mutate(
+#     isd_prop_ecn_disadvantaged = 
+#       as.numeric(stdcount_ecn_disadvantaged) / stdcount_total,
+#     isd_status_title1_15 = if_else(isd_prop_ecn_disadvantaged >= 0.15, 1, 0),
+#     isd_status_title1_40 = if_else(isd_prop_ecn_disadvantaged >= 0.40, 1, 0),
+#     isd_prop_eth_min = (stdcount_total - stdcount_eth_wht) / stdcount_total,
+#     isd_status_majority_minority = if_else(isd_prop_eth_min >= 0.5, 1, 0)
+#   )
+# 
+# # now adding the info above to the database tables
+# mischool_database_sch_1 <- mischool_database_sch |> 
+#   left_join(
+#     mischool_std_count_sch |> 
+#       select(
+#         isd_code:sch_code, 
+#         stdcount_total, 
+#         sch_prop_ecn_disadvantaged:sch_status_majority_minority
+#       )
+#   )
+# 
+# mischool_database_dst_1 <- mischool_database_dst |> 
+#   left_join(mischool_std_count_dst)
+# 
+# mischool_database_isd_1 <- mischool_database_isd |> 
+#   left_join(mischool_std_count_isd)
+```
+
+
+## Creating Visualizations
+
+```{r}
+library(sf)
+library(tidyverse)
+library(here)
+```
+
+```{r}
+# sf_dst <- read_sf(dsn = here("data", "School_Districts_(v17a)", "School_Districts_(v17a).shp"))
+# 
+# dat_dst_n <- dat_entity_1 |> 
+#   group_by(dst_code) |> 
+#   summarize(dst_n = n())
+# 
+# sf_dst1 <- sf_dst |> left_join(dat_dst_n, by = c("DCODE" = "dst_code"))
+# 
+# ggplot(sf_dst1, aes(fill = dst_n)) +
+#   geom_sf()
+
+```

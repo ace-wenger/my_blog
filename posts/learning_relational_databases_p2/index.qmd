@@ -1,0 +1,196 @@
+---
+title: "Creating and Using Relational Databases, Part 2"
+author: "Aaron Wenger"
+date: "2023-06-23"
+categories: 
+  - relational databases
+  - learning R
+  - data science
+  - tutorial
+execute: 
+  echo: false
+  warning: false
+format:
+  html:
+    df-print: paged
+---
+
+```{r}
+#| label: Setup and data import
+
+library(tidyverse)
+library(here)
+library(knitr)
+# library(kableExtra)
+# library(pillar)
+
+filepath <- here("posts", "learning_relational_databases_p2", "data")
+
+mischool_flat <- read_csv(
+  file = here(filepath, "23-05_School-District-Info_MiSchoolData.csv")
+)
+```
+
+The following example uses data on Michigan K-12 public schools to demonstrate how easy it can be to get "flat" data into a relational database format and quickly produce summary statistics.
+
+## Introduction to Dataset
+
+The first dataset used in this example was downloaded from the Michigan government site [MI School Data](https://www.mischooldata.org/k-12-data-files/).
+It holds contact information and various other data points for all current Michigan public educational entities.
+All 22 variables are shown with the `dplyr::glimpse()` function:
+
+```{r}
+# Would like to center-align the output so that it presents better
+glimpse(mischool_flat)
+```
+
+This is a "flat" dataset as it contains three observational units: Intermediate school districts (ISDs), school districts, and schools (referred to as "buildings").
+These three observational units are hierarchically nested with ISDs - also known as regional educational service agencies (RESAs) - containing districts, which contain schools. 
+ISDs themselves may contain one or more schools directly, without an intervening district.
+Because the dataset is flat, summary statistics cannot easily be calculated for each level without using complex filtering conditions and grouping.
+  
+We won't be using all these variables and will rename the relevant ones so that they are easier to work with. 
+Also it appears that some closed buildings/schools are present, as well as a few duplicate rows present, so we will remove those (using `filter()` and `unique()`) before we start.
+
+```{r}
+#| label: Preparing the data
+#| echo: true
+#| code-fold: true
+mischool_flat <- mischool_flat |> 
+  filter(Status == "Open-Active") |> 
+  distinct() |>
+  select(
+    isd_code     = ISDCode,
+    isd_name     = ISDName,
+    dst_code     = DistrictCode,
+    dst_name     = DistrictName,
+    sch_code     = BuildingCode,
+    sch_name     = BuildingName,
+    sch_type     = SCHOOL_EMPHASIS,
+    sch_level    = SCHOOL_LEVEL,
+    ent_category = EntityType,
+    add_street   = ADDRESS_LINE_1,
+    add_city     = CITY,
+    add_county   = COUNTY_NAME,
+    add_zip      = ZIP_CODE
+  )
+```
+
+## Identifying key variables
+Given that there are three observational units, our relational database should include three tables.
+Each table will require a primary key and at least one foreign key.
+Our first step will be to establish which variables will serve as primary keys for each table.
+The only criterion for primary keys is that they have unique values for each observation in their table.
+
+The tables below show that for `isd_code`, `dst_code`, and `sch_code`, not all vales are unique in the flat dataset.
+
+```{r}
+#| label: tbl-primary-key
+#| tbl-cap: Examining potential key variables
+#| layout-ncol: 3
+#| tbl-subcap: 
+#|   - "ISD Code"
+#|   - "District Code"
+#|   - "School Code"
+#| echo: true
+#| code-fold: true
+
+# The occurence of each potential key variable is counted and filtered for values that occur more than once.
+# For a better presentation, counts are arranged in ascending order
+# kable(head(mischool_flat |> count(isd_code) |> filter(n > 1) |> arrange(n)))
+# kable(head(mischool_flat |> count(dst_code) |> filter(n > 1) |> arrange(n)))
+# kable(head(mischool_flat |> count(sch_code) |> filter(n > 1) |> arrange(n)))
+mischool_flat |> count(isd_code) |> filter(n > 1) |> arrange(n)
+mischool_flat |> count(dst_code) |> filter(n > 1) |> arrange(n)
+mischool_flat |> count(sch_code) |> filter(n > 1) |> arrange(n)
+```
+
+However, if we take the combination of `isd_code`, `dst_code`, and `sch_code`, we find that each row has a unique combined value (the number of distinct combinations, `r nrow(mischool_flat |> distinct(isd_code, dst_code, sch_code))`, is the same as the total number of rows, `r nrow(mischool_flat)`).
+Thus, it seems that `isd_code`, `dst_code`, and `sch_code` may be good key variables for the three tables that we want to construct.
+
+## Creating ISD, District, and School Tables
+
+From an examination of the dataset and available documentation, it can determined that the administrative offices of ISDs and districts are indicated by a `sch_code` value of "00000."
+Oftentimes, these entries duplicate the address (among other variables) of schools with students, representing how administrative offices often share a building with a K-12 school.
+Thus, `sch_code != 00000` can be used as a filtering condition to separate out all entries representing schools.
+
+In a similar manner, all ISD administrative offices appear to have a `dst_code` value that ends with three zeros.
+Thus, a condition with `str_detect()` can be constructed to separate out all entries representing district offices.
+Using these filtering conditions, we create our tables. Another check, shows that each table has a primary variable:
+
+```{r}
+#| label: check-primary-key
+#| tbl-cap: Checking primary key variables
+#| layout-ncol: 3
+#| tbl-subcap: 
+#|   - "ISD Code"
+#|   - "District Code"
+#|   - "School Code"
+#| echo: true
+#| code-fold: true
+
+mischool_database_sch <- mischool_flat |> 
+  filter(sch_code != "00000")
+
+mischool_database_dst <- mischool_flat |> 
+  filter(!str_detect(dst_code, "000$") & sch_code == "00000") |> 
+  select(
+    isd_code,
+    dst_code,
+    sch_code,
+    dst_name,
+    ent_category,
+    add_city,
+    add_county
+  )
+
+mischool_database_isd <- mischool_flat |>
+  filter(str_detect(dst_code, "000$") & sch_code == "00000") |> 
+  select(
+    isd_code,
+    isd_name,
+    dst_code,
+    sch_code,
+    ent_category,
+    add_county
+  )
+
+# A simpler way to determine if each variable is a good primary key is to find the number of values which appear more than once.
+# A primary key should never appear more than once!
+# mischool_database_sch |> count(sch_code) |> filter(n > 1)
+# kable(head(mischool_database_dst |> count(dst_code) |> filter(n > 1) |> arrange(n)))
+# kable(head(mischool_database_isd |> count(isd_code) |> filter(n > 1) |> arrange(n)))
+mischool_database_sch |> count(sch_code) |> filter(n > 1)
+mischool_database_dst |> count(dst_code) |> filter(n > 1)
+mischool_database_isd |> count(isd_code) |> filter(n > 1)
+```
+
+Below is shown the school table which contains two additional variables `isd_code` and `dst_code` which act as foreign keys for the other two tables.
+
+```{r}
+#| tbl-cap: School Table
+
+mischool_database_sch
+```
+
+With our three tables, we have a relational database.
+Now, data can be added to each table and extracted for analysis in a consistent manner.
+Let's start in the next post by adding some summary statistics that will make the database more useful.
+
+### Saving the Database
+
+It is important to save this state of the database as it represents the end of our cleaning and restructuring of the MiSchool dataset.
+Reproducing this database will be very simple and if any breaking changes are introduced in the MiSchool dataset (changing variable names, dropped variables, etc.) then it will be easy to introduce fixes.
+
+<!--# At some point in the future, I want to learn to make this code more sophisticated -->
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+filepath <- here("posts", "learning_relational_databases_p2", "data", "relational_database")
+
+write_csv(mischool_database_sch, here(filepath, "mischool_database_sch.csv"))
+write_csv(mischool_database_dst, here(filepath, "mischool_database_dst.csv"))
+write_csv(mischool_database_isd, here(filepath, "mischool_database_isd.csv"))
+```
