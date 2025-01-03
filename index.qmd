@@ -1,14 +1,45 @@
 ---
-title: "my_blog"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+title: "About Me"
+about:
+  template: solana
+  links:
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com
+    - icon: github
+      text: Github
+      href: https://github.com
+    - text: "{{< fa envelope >}} Email"
+    - text: "{{< ai orcid >}} ORCID"
+    - text: "{{< ai osf >}} OSF"
+image: home_pic.jpg
+resources: "Resume__research.pdf"
+comments: false
 ---
+
+I'm a researcher and educator interested in the critical evaluation of education research and its application to actual students and teachers.
+I recently graduated with a PhD from the Mallinson Institute for Science Education at Western Michigan University.
+I am developing a research program which investigates the methods, results, and impact of studies in education to empower teachers and administrators with more robust recommendations.
+
+I am passionate about education at all levels and the development of knowledge, skills, and character in the next generation.
+I have taught biology and chemistry at various levels (8th grade to undergraduate)
+I aspire to be a lifelong learner and enjoy reading of diverse subjects, as well as developing my skills as a researcher.
+
+See my [CV](Resume__research.pdf) for a complete listing of my education, work, and experience.
+
+## Key research interests
+- Meta-research methods, such as systematic review and meta-analysis 
+- Computational reproducibility and open science practices for data collection, analysis, and reporting 
+- Role of evidence in educational policy and practice 
+
+## Teaching and public engagement interests
+- Scientific methods, experimental design, causal inference, and philosophy of science
+- Introductory and advanced biology subjects, particularly microbiology and molecular biology
+- History of educational psychology and science education
+- Statistical and computational research methods using R, especially computational reproducibility
+
+<!-- ## Selected writings -->
+
+<!-- ## Personal life -->
 
 

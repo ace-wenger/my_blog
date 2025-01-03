@@ -1,0 +1,15 @@
+---
+title: "Blog"
+listing:
+  contents: posts
+  type: default
+  fields: [image, date, title, subtitle, description]
+  image-align: right
+  sort: "date desc"
+  sort-ui: true
+  categories: true
+  page-size: 10
+---
+
+Here I document my learning journeys into various software packages or technical subjects.
+I also keep this as a sort of open notebook which I find helpful for my own work and for collaboration with colleagues.
