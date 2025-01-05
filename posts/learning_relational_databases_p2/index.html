@@ -8,6 +8,7 @@
 
 <meta name="author" content="Aaron Wenger">
 <meta name="dcterms.date" content="2023-06-23">
+<meta name="description" content="Example of how “flat” data can be restructured as a three-table relational database using Michigan K-12 education data.">
 
 <title>Creating and Using Relational Databases, Part 2 – Aaron Wenger</title>
 <style>
@@ -162,7 +163,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Creating and Using Relational Databases, Part 2</h1>
-                                <div class="quarto-categories">
+                  <div>
+        <div class="description">
+          Example of how “flat” data can be restructured as a three-table relational database using Michigan K-12 education data.
+        </div>
+      </div>
+                          <div class="quarto-categories">
                 <div class="quarto-category">relational databases</div>
                 <div class="quarto-category">learning R</div>
                 <div class="quarto-category">data science</div>
@@ -385,24 +391,24 @@ Table&nbsp;1: Examining potential key variables
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>mischool_database_dst <span class="sc">|&gt;</span> <span class="fu">count</span>(dst_code) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>mischool_database_isd <span class="sc">|&gt;</span> <span class="fu">count</span>(isd_code) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="tbl-anonymous-7304737" class="cell quarto-layout-panel anchored" data-layout-ncol="3">
+<div id="tbl-anonymous-187125" class="cell quarto-layout-panel anchored" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div data-pagedtable="false"> <div class="table-caption"><p>ISD Code</p> {#tbl-anonymous-7304737-1}</div>
+<div data-pagedtable="false"> <div class="table-caption"><p>ISD Code</p> {#tbl-anonymous-187125-1}</div>
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["sch_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div data-pagedtable="false"> <div class="table-caption"><p>District Code</p> {#tbl-anonymous-7304737-2}</div>
+<div data-pagedtable="false"> <div class="table-caption"><p>District Code</p> {#tbl-anonymous-187125-2}</div>
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["dst_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div data-pagedtable="false"> <div class="table-caption"><p>School Code</p> {#tbl-anonymous-7304737-3}</div>
+<div data-pagedtable="false"> <div class="table-caption"><p>School Code</p> {#tbl-anonymous-187125-3}</div>
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["isd_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
