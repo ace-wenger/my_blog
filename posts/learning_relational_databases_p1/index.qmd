@@ -1,5 +1,5 @@
 ---
-title: "Creating and Using Relational Databases, Part 1"
+title: "Relational Databases in R, Part 1"
 author: "Aaron Wenger"
 date: "2023-05-13"
 description: Data is often hierarchical, structuring it in a relational database is an efficient way to account for this.
@@ -24,7 +24,9 @@ In a few words, tidy data follows three principles:
 3. each value has its own cell
 
 The third principle may seem obvious but it becomes important in more complex data structures. 
-![Figure 1](tidy_data_figure.png) <!--# caption isn't showing in preview -->, from [R for Data Science](https://r4ds.had.co.nz/tidy-data.html) shows these three principles visually.
+@fig-tidy-data, from chapter 12 of [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), shows these three principles visually.
+
+![Tidy Data Principles](tidy_data_figure.png){#fig-tidy-data}
 
 ## Introduction to Relational Databases
 

@@ -1,5 +1,5 @@
 ---
-title: "Creating and Using Relational Databases, Part 2"
+title: "Relational Databases in R, Part 2"
 author: "Aaron Wenger"
 date: "2023-06-23"
 description: Example of how "flat" data can be restructured as a three-table relational database using Michigan K-12 education data.
