@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2023-05-13">
 <meta name="description" content="Data is often hierarchical, structuring it in a relational database is an efficient way to account for this.">
 
-<title>Creating and Using Relational Databases, Part 1 – Aaron Wenger</title>
+<title>Relational Databases in R, Part 1 – Aaron Wenger</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Creating and Using Relational Databases, Part 1</h1>
+      <h1 class="title">Relational Databases in R, Part 1</h1>
                   <div>
         <div class="description">
           Data is often hierarchical, structuring it in a relational database is an efficient way to account for this.
@@ -200,7 +200,17 @@ div.csl-indent {
 <li>each observation has its own row</li>
 <li>each value has its own cell</li>
 </ol>
-<p>The third principle may seem obvious but it becomes important in more complex data structures. <img src="tidy_data_figure.png" class="img-fluid" alt="Figure 1"> <!--# caption isn't showing in preview -->, from <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a> shows these three principles visually.</p>
+<p>The third principle may seem obvious but it becomes important in more complex data structures. <a href="#fig-tidy-data" class="quarto-xref">Figure&nbsp;1</a>, from chapter 12 of <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a>, shows these three principles visually.</p>
+<div id="fig-tidy-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tidy-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="tidy_data_figure.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidy-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Tidy Data Principles
+</figcaption>
+</figure>
+</div>
 <section id="introduction-to-relational-databases" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-relational-databases">Introduction to Relational Databases</h2>
 <p>Often when data is collected, it will have a nested or hierarchical structure. This especially true for education data. For instance, students are nested in classrooms which are nested in schools, which are nested in districts … you get the point. At each level of nesting different variables will be relevant which affects data collection and analysis. For example, students have test scores and schools have average test scores - if all individual test scores are collected, it doesn’t make sense to contact the principle and collect the school average score. And yet we may still collect other, non-aggregated information about the school (public/sectarian, urban/rural, etc.) which are relevant to the analysis.</p>
