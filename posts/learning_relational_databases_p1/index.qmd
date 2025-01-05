@@ -2,6 +2,7 @@
 title: "Creating and Using Relational Databases, Part 1"
 author: "Aaron Wenger"
 date: "2023-05-13"
+description: Data is often hierarchical, structuring it in a relational database is an efficient way to account for this.
 categories:
   - relational databases
   - learning R
@@ -9,16 +10,13 @@ categories:
   - tutorial
 ---
 
-Processing and structuring data for summary, statistical analysis, and visualization is critical for reproducible workflows.
-Analysis scripts that start with well-prepared data are cleaner, facilitate easy exploratory data analysis, and are extensible.
-But what does it mean for data to be "well-prepared?"
-
-Well-prepared data is structured with the data analysis tools in mind.
+The first step in any data analysis workflow is ensuring that the data is clean and has a consistent, known structure.
+Analysis scripts that start with clean, consistent data are simpler, facilitate easy exploratory data analysis, and are extensible.
+There are at least several ways for data to be structured, but likely only one that is well-suited to the data analysis tools which will be used.
 The `tidyverse` tools in R - and other tools which follow "tidy data" conventions - are "tidy tools" meaning they take tidy data and output tidy data.
 
-Hadley Wickham wrote a technical paper explaining the concepts of tidy data and tidy tools [@WicTidyData2014].
+Hadley Wickham, one of the main developers of `tidyverse` packages, wrote a technical paper explaining the concepts of tidy data and tidy tools [@WicTidyData2014].
 Thankfully he also wrote a very approachable book that explains tidy data in simpler terms: [R for Data Science](https://r4ds.had.co.nz/tidy-data.html).
-
 In a few words, tidy data follows three principles: 
 
 1. each variable has its own column 
@@ -35,35 +33,34 @@ This especially true for education data.
 For instance, students are nested in classrooms which are nested in schools, which are nested in districts ... you get the point.
 At each level of nesting different variables will be relevant which affects data collection and analysis.
 For example, students have test scores and schools have average test scores - if all individual test scores are collected, it doesn't make sense to contact the principle and collect the school average score.
-And yet we may still contact the principle and collect other pieces of information about the school.
+And yet we may still collect other, non-aggregated information about the school (public/sectarian, urban/rural, etc.) which are relevant to the analysis.
 
 Each level in a hierarchical dataset is called an *observational unit*.
 In order to get this data into a tidy format it will need to restructured so that each observational unit gets it own table.
-
 Remember the third principle of tidy data?
 The third principle may be expressed differently as "each value is expressed only once" (my words) or "each observational unit has its own table" [@WicTidyData2014].
-Thus, each level of nestedness in the dataset - each observational unit - gets its own table.
-In the above example, all student observations are collected on one table and all school observations in another.
+In the above example, all student observations would be collected in one table and all school observations in another.
 
 A set of tables are related to each using *key* variables, which allow the observations in one table to be related to observations in another.
 For example, in order to identify the school a student attends, a *school_id* variable is given to each student.
 
 There are two types of keys.
 One primary key in included in each table to uniquely identify each observation.
-One or more foreign keys are included in each table in order to relate observations to those tables that the key is primary.
+One or more foreign keys are included in each table in order to relate observations to those tables where the key is primary.
 So on the student table, "student_id" is the primary key and "school_id" is the foreign key, corresponding to the primary key on the school table.
 
 ## Why Use Relational Databases?
 
-From a quick reading through of the Wikipedia page on the [relational model](https://en.wikipedia.org/wiki/Relational_model) (data science term for relational databases) there are alternative ways to structure nested data.
+From a quick reading of the Wikipedia page on the [relational model](https://en.wikipedia.org/wiki/Relational_model) (data science term for relational databases) there are alternative ways to structure nested data.
 What those alternatives are and what the relative theoretical advantages of the relational model are, I cannot say.
-Perhaps that's fodder for another post.
-
-Relational databases do seem to have the advantage of being human- and machine-readable.
+(Perhaps that's fodder for another post.)
+Relational databases do have the advantage of being human- and machine-readable.
 This means that code can be easily written to manipulate a relational database and people can also open up an excel spreadsheet and peruse each table.
 
 Tidyverse's `dplyr` package has "two table verbs" which make it super easy to manipulate data structured as a relational database.
 One table verbs are functions that take one table as input, perform some operation, and output the resulting table.
-Two table verbs do the very same thing except they take *two* tables as input and require a matching variable, a key.
+Two table verbs do the very same thing except they take *two* tables as input, require a matching variable (a key), and output a single table.
 
-In the next post <!--# link here --> an example of a "flat" data file will be used to show how a relational database can be constructed and used to generate summary statistics.
+In [part two](https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p2/), an example of a "flat" data file will be used to show how a relational database can be constructed.
+In [part three](https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p3/) (coming soon), our relational database will be used to generate summary statistics and extended to a fourth table.
+<!-- In [part four](https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p4/) (coming soon), a -->

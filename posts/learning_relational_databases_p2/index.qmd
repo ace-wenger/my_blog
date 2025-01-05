@@ -2,6 +2,7 @@
 title: "Creating and Using Relational Databases, Part 2"
 author: "Aaron Wenger"
 date: "2023-06-23"
+description: Example of how "flat" data can be restructured as a three-table relational database using Michigan K-12 education data.
 categories: 
   - relational databases
   - learning R
@@ -31,8 +32,6 @@ mischool_flat <- read_csv(
 )
 ```
 
-The following example uses data on Michigan K-12 public schools to demonstrate how easy it can be to get "flat" data into a relational database format and quickly produce summary statistics.
-
 ## Introduction to Dataset
 
 The first dataset used in this example was downloaded from the Michigan government site [MI School Data](https://www.mischooldata.org/k-12-data-files/).
@@ -45,7 +44,7 @@ glimpse(mischool_flat)
 ```
 
 This is a "flat" dataset as it contains three observational units: Intermediate school districts (ISDs), school districts, and schools (referred to as "buildings").
-These three observational units are hierarchically nested with ISDs - also known as regional educational service agencies (RESAs) - containing districts, which contain schools. 
+These three observational units are hierarchically nested, with ISDs - also known as regional educational service agencies (RESAs) - containing districts, which contain schools. 
 ISDs themselves may contain one or more schools directly, without an intervening district.
 Because the dataset is flat, summary statistics cannot easily be calculated for each level without using complex filtering conditions and grouping.
   
