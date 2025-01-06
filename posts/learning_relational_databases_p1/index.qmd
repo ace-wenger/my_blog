@@ -7,7 +7,6 @@ categories:
   - relational databases
   - learning R
   - data science
-  - tutorial
 ---
 
 The first step in any data analysis workflow is ensuring that the data is clean and has a consistent, known structure.
@@ -16,7 +15,7 @@ There are at least several ways for data to be structured, but likely only one t
 The `tidyverse` tools in R - and other tools which follow "tidy data" conventions - are "tidy tools" meaning they take tidy data and output tidy data.
 
 Hadley Wickham, one of the main developers of `tidyverse` packages, wrote a technical paper explaining the concepts of tidy data and tidy tools [@WicTidyData2014].
-Thankfully he also wrote a very approachable book that explains tidy data in simpler terms: [R for Data Science](https://r4ds.had.co.nz/tidy-data.html).
+Thankfully he also coauthored a very approachable book [@WCGDataScienceImport2023] in which tidy data is explained in simpler terms.
 In a few words, tidy data follows three principles: 
 
 1. each variable has its own column 
@@ -24,7 +23,7 @@ In a few words, tidy data follows three principles:
 3. each value has its own cell
 
 The third principle may seem obvious but it becomes important in more complex data structures. 
-@fig-tidy-data, from chapter 12 of [R for Data Science](https://r4ds.had.co.nz/tidy-data.html), shows these three principles visually.
+@fig-tidy-data, from chapter 12, shows these three principles visually.
 
 ![Tidy Data Principles](tidy_data_figure.png){#fig-tidy-data}
 
@@ -56,8 +55,15 @@ So on the student table, "student_id" is the primary key and "school_id" is the 
 From a quick reading of the Wikipedia page on the [relational model](https://en.wikipedia.org/wiki/Relational_model) (data science term for relational databases) there are alternative ways to structure nested data.
 What those alternatives are and what the relative theoretical advantages of the relational model are, I cannot say.
 (Perhaps that's fodder for another post.)
-Relational databases do have the advantage of being human- and machine-readable.
+Relational databases do have the advantage of being both human- and machine-readable.
 This means that code can be easily written to manipulate a relational database and people can also open up an excel spreadsheet and peruse each table.
+
+When compared to "flat" data (all variables and values on one table), I have found two distinct advantages: interpretability and extensibility.
+The relational model represents a structural aspect of the system being investigated in the structure of the data.
+This enables much more intuitive assessments of the data and interpretations of the results than is possible with a flat structure.
+Additionally, a flat structure is constraining when a project evolves and more data is collected.
+Either new variables must added or existing variables must be renamed/redefined to incorporate the new observational unit.
+In a relational database, a new table and key variable(s) is simply added.
 
 Tidyverse's `dplyr` package has "two table verbs" which make it super easy to manipulate data structured as a relational database.
 One table verbs are functions that take one table as input, perform some operation, and output the resulting table.

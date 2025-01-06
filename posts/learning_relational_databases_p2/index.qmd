@@ -32,6 +32,8 @@ mischool_flat <- read_csv(
 )
 ```
 
+In part 1 of this series, the tidy data concept was introduced and used to explained the  data structure 
+
 ## Introduction to Dataset
 
 The first dataset used in this example was downloaded from the Michigan government site [MI School Data](https://www.mischooldata.org/k-12-data-files/).
