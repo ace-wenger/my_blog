@@ -1,8 +1,9 @@
 ---
 title: "Relational Databases in R, Part 2"
 author: "Aaron Wenger"
-date: "2023-06-23"
+date: today
 description: Example of how "flat" data can be restructured as a three-table relational database using Michigan K-12 education data.
+draft: true
 categories: 
   - relational databases
   - learning R
@@ -32,11 +33,12 @@ mischool_flat <- read_csv(
 )
 ```
 
-In part 1 of this series, the tidy data concept was introduced and used to explained the  data structure 
+In part 1 of this series, the relational model for structuring data was introduced in terms of Hadley Wickham's tidy data.
+This post demonstrates how "flat" data can be restructured as a three-table relational database using standard tidyverse tools.
 
 ## Introduction to Dataset
 
-The first dataset used in this example was downloaded from the Michigan government site [MI School Data](https://www.mischooldata.org/k-12-data-files/).
+The dataset used in this example was downloaded from the Michigan government site [MI School Data](https://www.mischooldata.org/k-12-data-files/).
 It holds contact information and various other data points for all current Michigan public educational entities.
 All 22 variables are shown with the `dplyr::glimpse()` function:
 
@@ -45,9 +47,16 @@ All 22 variables are shown with the `dplyr::glimpse()` function:
 glimpse(mischool_flat)
 ```
 
-This is a "flat" dataset as it contains three observational units: Intermediate school districts (ISDs), school districts, and schools (referred to as "buildings").
-These three observational units are hierarchically nested, with ISDs - also known as regional educational service agencies (RESAs) - containing districts, which contain schools. 
-ISDs themselves may contain one or more schools directly, without an intervening district.
+This is a flat dataset as it contains three observational units: Intermediate school districts (ISDs, also referred to as regional educational service agencies, RESAs), school districts, and buildings (typically schools but inclusive of administrative offices and other facilities).
+These three observational units are hierarchically nested, with ISDs containing districts, which contain schools. 
+The "flatness" of the data is apparent as some rows represent ISDs and the buildings they operate outside of any one district (i.e., administrative offices, supplemental educational facilities).
+Other rows represent districts and their administrative offices.
+Generally each row represents a unique building with a distinct address, however some buildings are listed multiple times.
+This likely represents the co-location of different types of facilities (e.g., administrative offices located in a K-12 school).
+Some rows appear to be duplicated for no apparent reason
+ISDs themselves may contain one or more buildings directly, without an intervening district.
+Often this occurs because ISD administrative offices are located in their own building rather in one local districts.
+The first step 
 Because the dataset is flat, summary statistics cannot easily be calculated for each level without using complex filtering conditions and grouping.
   
 We won't be using all these variables and will rename the relevant ones so that they are easier to work with. 

@@ -1,0 +1,50 @@
+---
+title: "Discovering Michigan's Educatonal Entity Master"
+author: "Aaron Wenger"
+date: "2023-07-24"
+description: empty
+draft: true
+categories: 
+  - public data sources
+  - education datasets
+execute: 
+  eval: false
+  echo: false
+  warning: false
+format:
+  wordcount-html:
+    count-code-blocks: false
+    wordcount-banner: true
+    df-print: paged
+params:
+  wordcount: |
+    <strong>{{< words-sum body-note-ref >}} total words</strong>: {{< words-body >}} in the body
+---
+
+::: {.content-visible when-meta="wordcount-banner"}
+{{< include ../../_extensions/andrewheiss/wordcount/banner.html >}}
+:::
+
+```{r}
+#| label: Setup and data import
+
+library(tidyverse)
+library(conflicted)
+
+dat_eem <- read_csv(
+  file = here::here(
+      "posts", "discovering_EEM", "EEMDataReport 01-09-2025 11-57-37-436.csv"
+    )
+  )
+
+problems(dat_eem)
+```
+
+<!-- The government of Michigan has a few sites where public data is hosted and accessible by the public. -->
+<!-- The [Educational Entity Master (EEM)](https://cepi.state.mi.us/eem/Default.aspx) is housed in the Center for Educational Performance and Information (CEPI). -->
+<!-- The EEM is a repository containing identification numbers and basic information for public and non-public schools, intermediate school districts, and institutions of higher education. -->
+
+```{r}
+glimpse(dat_eem)
+```
+

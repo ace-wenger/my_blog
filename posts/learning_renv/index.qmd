@@ -13,9 +13,9 @@ Organizing, managing, and executing reproducible research projects is hard becau
 
   - No data? Not reproducible.
   - No code? Not reproducible.
-  - Software is unavailable? Not reproducible.
-  - Computational environment is unspecified? Probably not.
-  - Software versions are unknown? Eventually no.
+  - Software is no longer available? Not reproducible.
+  - Computational environment is undocumented? Probably not.
+  - Software versions are undocumented? Eventually no.
     
 We think that we have one of these threats to reproducibility whipped, then some unexpected development or complication throws it all back in doubt.
 I think this is especially true for someone like me: an intermediate R user who has no background in computer science or programming other than what I have learned on my own in the last couple years.
@@ -96,4 +96,4 @@ A third benefit is the quick installation of new-to-me packages.
 Often dependencies are already included and built in my cache so all `renv` has to do is link to the cache for that dependency.
 Thus, downloads and builds from binaries are minimized and new packages are ready to use in mere moments.
 
-I think all scientists and researchers who use R and who are committed to research reproducibility should adopt `renv` into their workflow.
+I think all scientists and researchers who use R and who are committed to research reproducibility should adopt `renv` (or a similar package documentation tool) into their workflow.
