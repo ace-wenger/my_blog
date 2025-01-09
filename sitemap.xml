@@ -2,38 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ace-wenger.github.io/my_blog/presentations.html</loc>
-    <lastmod>2025-01-05T13:56:15.411Z</lastmod>
+    <lastmod>2025-01-09T18:26:45.286Z</lastmod>
   </url>
   <url>
     <loc>https://ace-wenger.github.io/my_blog/posts/learning_extract_figure_data/index.html</loc>
-    <lastmod>2025-01-05T13:56:15.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts/learning_renv/index.html</loc>
-    <lastmod>2025-01-05T13:56:15.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p2/index.html</loc>
-    <lastmod>2025-01-05T13:56:15.410Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts.html</loc>
-    <lastmod>2025-01-05T13:56:15.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/papers.html</loc>
-    <lastmod>2025-01-05T13:56:15.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/about.html</loc>
-    <lastmod>2025-01-05T13:56:15.388Z</lastmod>
+    <lastmod>2025-01-09T18:26:45.283Z</lastmod>
   </url>
   <url>
     <loc>https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p1/index.html</loc>
-    <lastmod>2025-01-05T13:56:15.409Z</lastmod>
+    <lastmod>2025-01-09T18:26:45.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/about.html</loc>
+    <lastmod>2025-01-09T18:26:45.241Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/papers.html</loc>
+    <lastmod>2025-01-09T18:26:45.260Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/posts.html</loc>
+    <lastmod>2025-01-09T18:26:45.260Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/posts/learning_renv/index.html</loc>
+    <lastmod>2025-01-09T18:26:45.286Z</lastmod>
   </url>
   <url>
     <loc>https://ace-wenger.github.io/my_blog/index.html</loc>
-    <lastmod>2025-01-05T13:56:15.408Z</lastmod>
+    <lastmod>2025-01-09T18:26:45.260Z</lastmod>
   </url>
 </urlset>

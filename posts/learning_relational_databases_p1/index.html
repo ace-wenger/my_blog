@@ -156,7 +156,6 @@ div.csl-indent {
                 <div class="quarto-category">relational databases</div>
                 <div class="quarto-category">learning R</div>
                 <div class="quarto-category">data science</div>
-                <div class="quarto-category">tutorial</div>
               </div>
                   </div>
   </div>
@@ -194,13 +193,13 @@ div.csl-indent {
 
 
 <p>The first step in any data analysis workflow is ensuring that the data is clean and has a consistent, known structure. Analysis scripts that start with clean, consistent data are simpler, facilitate easy exploratory data analysis, and are extensible. There are at least several ways for data to be structured, but likely only one that is well-suited to the data analysis tools which will be used. The <code>tidyverse</code> tools in R - and other tools which follow “tidy data” conventions - are “tidy tools” meaning they take tidy data and output tidy data.</p>
-<p>Hadley Wickham, one of the main developers of <code>tidyverse</code> packages, wrote a technical paper explaining the concepts of tidy data and tidy tools <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref">Wickham 2014</a>)</span>. Thankfully he also wrote a very approachable book that explains tidy data in simpler terms: <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a>. In a few words, tidy data follows three principles:</p>
+<p>Hadley Wickham, one of the main developers of <code>tidyverse</code> packages, wrote a technical paper explaining the concepts of tidy data and tidy tools <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref">Wickham 2014</a>)</span>. Thankfully he also coauthored a very approachable book <span class="citation" data-cites="WCGDataScienceImport2023">(<a href="#ref-WCGDataScienceImport2023" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span> in which tidy data is explained in simpler terms. In a few words, tidy data follows three principles:</p>
 <ol type="1">
 <li>each variable has its own column</li>
 <li>each observation has its own row</li>
 <li>each value has its own cell</li>
 </ol>
-<p>The third principle may seem obvious but it becomes important in more complex data structures. <a href="#fig-tidy-data" class="quarto-xref">Figure&nbsp;1</a>, from chapter 12 of <a href="https://r4ds.had.co.nz/tidy-data.html">R for Data Science</a>, shows these three principles visually.</p>
+<p>The third principle may seem obvious but it becomes important in more complex data structures. <a href="#fig-tidy-data" class="quarto-xref">Figure&nbsp;1</a>, from chapter 12, shows these three principles visually.</p>
 <div id="fig-tidy-data" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tidy-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -220,7 +219,8 @@ Figure&nbsp;1: Tidy Data Principles
 </section>
 <section id="why-use-relational-databases" class="level2">
 <h2 class="anchored" data-anchor-id="why-use-relational-databases">Why Use Relational Databases?</h2>
-<p>From a quick reading of the Wikipedia page on the <a href="https://en.wikipedia.org/wiki/Relational_model">relational model</a> (data science term for relational databases) there are alternative ways to structure nested data. What those alternatives are and what the relative theoretical advantages of the relational model are, I cannot say. (Perhaps that’s fodder for another post.) Relational databases do have the advantage of being human- and machine-readable. This means that code can be easily written to manipulate a relational database and people can also open up an excel spreadsheet and peruse each table.</p>
+<p>From a quick reading of the Wikipedia page on the <a href="https://en.wikipedia.org/wiki/Relational_model">relational model</a> (data science term for relational databases) there are alternative ways to structure nested data. What those alternatives are and what the relative theoretical advantages of the relational model are, I cannot say. (Perhaps that’s fodder for another post.) Relational databases do have the advantage of being both human- and machine-readable. This means that code can be easily written to manipulate a relational database and people can also open up an excel spreadsheet and peruse each table.</p>
+<p>When compared to “flat” data (all variables and values on one table), I have found two distinct advantages: interpretability and extensibility. The relational model represents a structural aspect of the system being investigated in the structure of the data. This enables much more intuitive assessments of the data and interpretations of the results than is possible with a flat structure. Additionally, a flat structure is constraining when a project evolves and more data is collected. Either new variables must added or existing variables must be renamed/redefined to incorporate the new observational unit. In a relational database, a new table and key variable(s) is simply added.</p>
 <p>Tidyverse’s <code>dplyr</code> package has “two table verbs” which make it super easy to manipulate data structured as a relational database. One table verbs are functions that take one table as input, perform some operation, and output the resulting table. Two table verbs do the very same thing except they take <em>two</em> tables as input, require a matching variable (a key), and output a single table.</p>
 <p>In <a href="https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p2/">part two</a>, an example of a “flat” data file will be used to show how a relational database can be constructed. In <a href="https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p3/">part three</a> (coming soon), our relational database will be used to generate summary statistics and extended to a fourth table. <!-- In [part four](https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p4/) (coming soon), a --></p>
 
@@ -231,6 +231,9 @@ Figure&nbsp;1: Tidy Data Principles
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-WicTidyData2014" class="csl-entry" role="listitem">
 Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of Statistical Software</em> 59 (10).
+</div>
+<div id="ref-WCGDataScienceImport2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd edition. Sebastopol: O’Reilly. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
