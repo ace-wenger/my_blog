@@ -25,7 +25,7 @@ I am passionate about education at all levels and the development of knowledge, 
 I have taught biology and chemistry at various levels (8th grade to undergraduate)
 I aspire to be a lifelong learner and enjoy reading of diverse subjects, as well as developing my skills as a researcher.
 
-See my [CV](Resume__research.pdf) for a complete listing of my education, work, and experience.
+See my [CV](CV.pdf) for a complete listing of my education, work, and experience.
 
 ## Key research interests
 - Meta-research methods, such as systematic review and meta-analysis 

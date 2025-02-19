@@ -3,7 +3,7 @@ title: "Relational Databases in R, Part 2"
 author: "Aaron Wenger"
 date: today
 description: Example of how "flat" data can be restructured as a three-table relational database using Michigan K-12 education data.
-draft: true
+draft: false
 categories: 
   - relational databases
   - learning R
@@ -13,9 +13,18 @@ execute:
   echo: false
   warning: false
 format:
-  html:
+  wordcount-html:
+    count-code-blocks: false
+    wordcount-banner: false
     df-print: paged
+params:
+  wordcount: |
+    <strong>{{< words-sum body-note-ref >}} total words</strong>: {{< words-body >}} in the body
 ---
+
+::: {.content-visible when-meta="wordcount-banner"}
+{{< include ../../_extensions/andrewheiss/wordcount/banner.html >}}
+:::
 
 ```{r}
 #| label: Setup and data import
@@ -74,10 +83,10 @@ mischool_flat <- mischool_flat |>
     isd_name     = ISDName,
     dst_code     = DistrictCode,
     dst_name     = DistrictName,
-    sch_code     = BuildingCode,
-    sch_name     = BuildingName,
-    sch_type     = SCHOOL_EMPHASIS,
-    sch_level    = SCHOOL_LEVEL,
+    bld_code     = BuildingCode,
+    bld_name     = BuildingName,
+    bld_type     = SCHOOL_EMPHASIS,
+    bld_level    = SCHOOL_LEVEL,
     ent_category = EntityType,
     add_street   = ADDRESS_LINE_1,
     add_city     = CITY,
@@ -92,7 +101,7 @@ Each table will require a primary key and at least one foreign key.
 Our first step will be to establish which variables will serve as primary keys for each table.
 The only criterion for primary keys is that they have unique values for each observation in their table.
 
-The tables below show that for `isd_code`, `dst_code`, and `sch_code`, not all vales are unique in the flat dataset.
+The tables below show that for `isd_code`, `dst_code`, and `bld_code`, not all values are unique in the flat format.
 
 ```{r}
 #| label: tbl-primary-key
@@ -101,7 +110,7 @@ The tables below show that for `isd_code`, `dst_code`, and `sch_code`, not all v
 #| tbl-subcap: 
 #|   - "ISD Code"
 #|   - "District Code"
-#|   - "School Code"
+#|   - "Bulding Code"
 #| echo: true
 #| code-fold: true
 
@@ -112,21 +121,22 @@ The tables below show that for `isd_code`, `dst_code`, and `sch_code`, not all v
 # kable(head(mischool_flat |> count(sch_code) |> filter(n > 1) |> arrange(n)))
 mischool_flat |> count(isd_code) |> filter(n > 1) |> arrange(n)
 mischool_flat |> count(dst_code) |> filter(n > 1) |> arrange(n)
-mischool_flat |> count(sch_code) |> filter(n > 1) |> arrange(n)
+mischool_flat |> count(bld_code) |> filter(n > 1) |> arrange(n)
 ```
 
-However, if we take the combination of `isd_code`, `dst_code`, and `sch_code`, we find that each row has a unique combined value (the number of distinct combinations, `r nrow(mischool_flat |> distinct(isd_code, dst_code, sch_code))`, is the same as the total number of rows, `r nrow(mischool_flat)`).
+However, if we take the combination of `isd_code`, `dst_code`, and `bld_code`, we find that each row has a unique combined value (the number of distinct combinations, `r nrow(mischool_flat |> distinct(isd_code, dst_code, bld_code))`, is the same as the total number of rows, `r nrow(mischool_flat)`).
 Thus, it seems that `isd_code`, `dst_code`, and `sch_code` may be good key variables for the three tables that we want to construct.
 
 ## Creating ISD, District, and School Tables
 
-From an examination of the dataset and available documentation, it can determined that the administrative offices of ISDs and districts are indicated by a `sch_code` value of "00000."
+The administrative offices of ISDs and districts are indicated by a `bld_code` value of "00000", according to the available documentation.
 Oftentimes, these entries duplicate the address (among other variables) of schools with students, representing how administrative offices often share a building with a K-12 school.
-Thus, `sch_code != 00000` can be used as a filtering condition to separate out all entries representing schools.
+Thus, `bld_code != 00000` can be used as a filtering condition to separate out all entries representing schools.
 
 In a similar manner, all ISD administrative offices appear to have a `dst_code` value that ends with three zeros.
 Thus, a condition with `str_detect()` can be constructed to separate out all entries representing district offices.
-Using these filtering conditions, we create our tables. Another check, shows that each table has a primary variable:
+Using these filtering conditions, we create our tables. 
+Another check, shows that each table has a primary variable - as indicated by the fact there there are no duplicate values in the respective variables:
 
 ```{r}
 #| label: check-primary-key
@@ -140,14 +150,14 @@ Using these filtering conditions, we create our tables. Another check, shows tha
 #| code-fold: true
 
 mischool_database_sch <- mischool_flat |> 
-  filter(sch_code != "00000")
+  filter(bld_code != "00000")
 
 mischool_database_dst <- mischool_flat |> 
-  filter(!str_detect(dst_code, "000$") & sch_code == "00000") |> 
+  filter(!str_detect(dst_code, "000$") & bld_code == "00000") |> 
   select(
     isd_code,
     dst_code,
-    sch_code,
+    bld_code,
     dst_name,
     ent_category,
     add_city,
@@ -155,12 +165,12 @@ mischool_database_dst <- mischool_flat |>
   )
 
 mischool_database_isd <- mischool_flat |>
-  filter(str_detect(dst_code, "000$") & sch_code == "00000") |> 
+  filter(str_detect(dst_code, "000$") & bld_code == "00000") |> 
   select(
     isd_code,
     isd_name,
     dst_code,
-    sch_code,
+    bld_code,
     ent_category,
     add_county
   )
@@ -170,7 +180,7 @@ mischool_database_isd <- mischool_flat |>
 # mischool_database_sch |> count(sch_code) |> filter(n > 1)
 # kable(head(mischool_database_dst |> count(dst_code) |> filter(n > 1) |> arrange(n)))
 # kable(head(mischool_database_isd |> count(isd_code) |> filter(n > 1) |> arrange(n)))
-mischool_database_sch |> count(sch_code) |> filter(n > 1)
+mischool_database_sch |> count(bld_code) |> filter(n > 1)
 mischool_database_dst |> count(dst_code) |> filter(n > 1)
 mischool_database_isd |> count(isd_code) |> filter(n > 1)
 ```
@@ -187,9 +197,9 @@ With our three tables, we have a relational database.
 Now, data can be added to each table and extracted for analysis in a consistent manner.
 Let's start in the next post by adding some summary statistics that will make the database more useful.
 
-### Saving the Database
+### Saving the Database as Separate Tables
 
-It is important to save this state of the database as it represents the end of our cleaning and restructuring of the MiSchool dataset.
+It is important to save this state of the database as it represents the end of the beginning of cleaning and restructuring of the MiSchool dataset.
 Reproducing this database will be very simple and if any breaking changes are introduced in the MiSchool dataset (changing variable names, dropped variables, etc.) then it will be easy to introduce fixes.
 
 <!--# At some point in the future, I want to learn to make this code more sophisticated -->

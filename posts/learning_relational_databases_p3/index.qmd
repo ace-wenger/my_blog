@@ -25,6 +25,13 @@ library(here)
 library(knitr)
 ```
 
+::: {.content-hidden}
+- intro
+- adding new columns: region and student count
+- adding summary columns:
+- computed summary values vs. state summary values
+- conclusion
+:::
 
 blah blah
 
