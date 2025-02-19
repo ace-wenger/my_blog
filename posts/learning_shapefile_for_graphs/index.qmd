@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+format: html
+draft: true
+---
+
+```{r}
+library(sf)
+library(tidyverse)
+library(here)
+```
+
+```{r}
+# sf_dst <- read_sf(dsn = here("data", "School_Districts_(v17a)", "School_Districts_(v17a).shp"))
+# 
+# dat_dst_n <- dat_entity_1 |> 
+#   group_by(dst_code) |> 
+#   summarize(dst_n = n())
+# 
+# sf_dst1 <- sf_dst |> left_join(dat_dst_n, by = c("DCODE" = "dst_code"))
+# 
+# ggplot(sf_dst1, aes(fill = dst_n)) +
+#   geom_sf()
+
+```
+
