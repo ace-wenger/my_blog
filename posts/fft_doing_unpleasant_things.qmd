@@ -1,0 +1,78 @@
+---
+title: "Running in the rain"
+author: "Aaron Wenger"
+date: "2025-10-28"
+categories:
+  - random thoughts
+  - essay
+---
+
+One afternoon this summer, I found myself running in the rain.
+It started soon after I did and I was thoroughly soaked before turning around.
+I like running because it gives me time to reflect, but running in the rain is not a particular pleasant experience.
+And so I reflected, how did I end up out here with soggy shoes, barely able to see through spotty glasses?
+The short answer is because I didn't plan to. 
+
+## Self-Help or Self-Sabotage?
+I have enjoyed a fair amount of self-help books and podcasts, such as the OG *Seven Habits* by Steven Covey.
+I think that many people have good things to say about time management, self-leadership, etc.
+One of the most helpful things I have taken away from these resources is the importance of reflection and intentionality.
+At some point, one needs to choose goals, order their activities towards achieving them, and assess their progress.
+
+However, this can easily be taken too far and result in a never-ending cycle of goal-setting and planning.
+These meta activities which were once meant to support the achievement of goals actually parasitize the time and energy required to make progress. 
+At worst this can become self-reinforcing when a lack of progress motivates more assessment, reflection, goal-setting, and planning.
+Thus, planning becomes the end in-and-of itself and self-help becomes self-sabotage.
+
+## Making Progress
+I fell into this self-sabotage trap during my PhD program.
+I spent many hours creating spreadsheets to help me plan and assess progress towards goals.
+I even learned about Gantt charts and tried to make them in R (spoilers: you can, but why?).
+Only when deadlines started carrying consequences did I prioritize progress and finish the bulk of my dissertation work in about six months.
+
+My final dissertation project was the biggest piece and consisted of a large meta-analysis.
+In a couple months I screened nearly 5000 abstracts and 500 documents, then coded several dozen variables for 150 of those documents.
+If you have done a meta-analysis then you would know that a meta-analysis with 150 documents (and 450 effect sizes) often takes teams of researchers and students the same or longer amount of time to complete.
+The only reason why I was able to work long hours efficiently for so long is because the progress I was making was obvious.
+The progress was itself motivating and spurred me on.
+
+At this point, you might say that I benefitted from a great deal of planning that I did do through the course of my program.
+And yes, it is true that I learned a lot, that I had practiced my skills for years, and that I was able to convert these into a sound project plan.
+Nevertheless, this planning was not some version of personal management or leadership.
+I did not budget time, journal my reflections, set internal or intermediate goals, gamify common tasks, or otherwise tinker with my behavior.
+These things would have stalled my progress and killed my motivation.
+I did know that I had a sound plan and that I was making progress.
+Thus, it was relatively easy to get up early and work.
+
+## When Progress is Not Apparent
+Unfortunately, it is not always clear when progress is being made.
+This was certainly true for me in the first few years of my PhD when I did not know what I would do for my dissertation.
+In these cases, it seems to me that the best thing to do is to develop small, clearly-defined tasks that contribute towards larger goals.
+For me, some examples of such tasks include browsing the lastest journal issues or writing a blog post like this one.[^2]
+Progress can then be defined as completing these tasks on some periodic basis.
+
+[^2]: For me, blogging is a way to exercise my writing skills and to pay back the many blog posts that I have found helpful or interesting.
+
+For example, when I was learning and developing a plan for my disseration, I should have defined progress as reading x papers a week with light notes.
+Instead of two years or so of haphazard work defined by anxious uncertainty, I would have quickly developed my interests *and* my capacity to pursue them.
+As a general rule, I don't have regrets[^3] but one of the few I do have is not using this time more effectively.
+
+[^3]: Regrets don't make sense to me.
+We are the people we are because of what we have done and experienced.
+If I had the ability to act on my regrets, changing my past accordingly, then I wouldn't be the person I am today to regret it.
+The better question to me is what can I learn, how can I change in light of what I know now?
+
+## Running
+Completing a marathon is an aspiration of mine.
+I do not know when I will, but I would like to in the next few years.
+I also aspire to live a long, productive life and to be as fit as my Grampa who could outwalk his grandkids in his 80s.
+I could plan and track progress towards completing a marathon, but I cannot plan and tinker my way into health.
+Yes, I know, it is important to develop a good lifestyle based on habits conducive to health.
+But, speaking from personal experience, it is difficult to develop an exercise habit when you are not fit to begin with.
+
+I ran in the rain that summer day because I didn't plan to.
+I had developed the habit of going for a run when I had a free hour in the afternoon.
+I did not have a plan on which days I would run or at what time.
+Neither did I complicate my running with gear (just running shoes and earbuds) or routes (just a convenient loop) or target times (just go).
+These things are not bad and might be really helpful in reaching specific goals.
+But they can get in the way of making progress.

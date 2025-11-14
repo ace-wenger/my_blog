@@ -1,8 +1,9 @@
 ---
-title: "Learing `renv` for Reproduciblity"
+title: "Learning `renv` for Reproduciblity"
 subtitle: "... and other benefits"
 author: "Aaron Wenger"
 date: "2024-01-24"
+date-modified: "2025-10-28"
 categories:
   - reproducibility
   - learning R
@@ -11,15 +12,16 @@ categories:
 
 Organizing, managing, and executing reproducible research projects is hard because there are so many possible reasons why a project cannot be reproduced.
 
-  - No data? Not reproducible.
-  - No code? Not reproducible.
-  - Software is no longer available? Not reproducible.
-  - Computational environment is undocumented? Probably not.
-  - Software versions are undocumented? Eventually no.
-    
-We think that we have one of these threats to reproducibility whipped, then some unexpected development or complication throws it all back in doubt.
-I think this is especially true for someone like me: an intermediate R user who has no background in computer science or programming other than what I have learned on my own in the last couple years.
+- No data? Not reproducible.
+- No code? Not reproducible.
+- Software is no longer available? Not reproducible.
+- Computational environment is undocumented? Probably not.
+- Software versions are undocumented? Eventually no.
+
+We think that we have one of these issues whipped, then some unexpected development or complication throws reproducibility back in doubt.
+I think this is especially true for someone like me: an intermediate R user who has no formal background in computer science or programming other than what I have learned on my own in the last couple years.
 This post reflects on my learning how to use `renv` as part of a reproducible research workflow and how I have handled a couple problems along the way.
+I will update this post with tips and lessons learned as long as I use `renv`.
 
 # Welcome `renv`
 
