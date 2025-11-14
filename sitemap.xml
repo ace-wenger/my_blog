@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ace-wenger.github.io/my_blog/presentations.html</loc>
-    <lastmod>2025-01-03T20:56:36.155Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p1/index.html</loc>
-    <lastmod>2025-01-06T15:06:19.810Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/index.html</loc>
-    <lastmod>2025-02-19T17:41:27.754Z</lastmod>
+    <loc>https://ace-wenger.github.io/my_blog/posts.html</loc>
+    <lastmod>2025-11-14T19:04:58.331Z</lastmod>
   </url>
   <url>
     <loc>https://ace-wenger.github.io/my_blog/about.html</loc>
-    <lastmod>2023-05-16T18:56:32.974Z</lastmod>
+    <lastmod>2025-11-14T19:04:58.312Z</lastmod>
   </url>
   <url>
-    <loc>https://ace-wenger.github.io/my_blog/papers.html</loc>
-    <lastmod>2025-01-03T20:56:31.990Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts/learning_extract_figure_data/index.html</loc>
-    <lastmod>2024-05-14T20:47:39.977Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p2/index.html</loc>
-    <lastmod>2025-01-21T19:50:17.251Z</lastmod>
+    <loc>https://ace-wenger.github.io/my_blog/posts/fft_doing_unpleasant_things.html</loc>
+    <lastmod>2025-11-14T19:04:58.355Z</lastmod>
   </url>
   <url>
     <loc>https://ace-wenger.github.io/my_blog/posts/learning_renv/index.html</loc>
-    <lastmod>2025-01-09T14:12:29.779Z</lastmod>
+    <lastmod>2025-11-14T19:04:58.357Z</lastmod>
   </url>
   <url>
-    <loc>https://ace-wenger.github.io/my_blog/posts.html</loc>
-    <lastmod>2025-01-03T20:58:12.150Z</lastmod>
+    <loc>https://ace-wenger.github.io/my_blog/index.html</loc>
+    <lastmod>2025-11-14T19:04:58.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p2/index.html</loc>
+    <lastmod>2025-11-14T19:04:58.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/posts/learning_extract_figure_data/index.html</loc>
+    <lastmod>2025-11-14T19:04:58.355Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p1/index.html</loc>
+    <lastmod>2025-11-14T19:04:58.356Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/papers.html</loc>
+    <lastmod>2025-11-14T19:04:58.331Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ace-wenger.github.io/my_blog/presentations.html</loc>
+    <lastmod>2025-11-14T19:04:58.412Z</lastmod>
   </url>
 </urlset>

@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aaron Wenger">
+<meta name="dcterms.date" content="2025-10-28">
 
-<title>Extracting Statistics From Figures in R – Aaron Wenger</title>
+<title>Running in the rain – Aaron Wenger</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,51 +22,31 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-e7f4145358ce1d0cd37d8d374dbb44f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e7f4145358ce1d0cd37d8d374dbb44f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -94,7 +76,7 @@ div.csl-indent {
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -266,7 +248,7 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Aaron Wenger</span>
     </a>
   </div>
@@ -277,19 +259,19 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../posts.html"> 
+    <a class="nav-link" href="../posts.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../papers.html"> 
+    <a class="nav-link" href="../papers.html"> 
 <span class="menu-text">Papers</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../presentations.html"> 
+    <a class="nav-link" href="../presentations.html"> 
 <span class="menu-text">Presentations</span></a>
   </li>  
   <li class="nav-item compact">
@@ -309,14 +291,30 @@ div.csl-indent {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Extracting Statistics From Figures in R</h1>
-                      </div>
+      <h1 class="title">Running in the rain</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">random thoughts</div>
+                <div class="quarto-category">essay</div>
+              </div>
+                  </div>
   </div>
     
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aaron Wenger </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 28, 2025</p>
+      </div>
+    </div>
     
       
     </div>
@@ -334,75 +332,39 @@ div.csl-indent {
 
 
 
-<p>I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report very few summary or inferential statistics in text or in tables. Instead, results are reported in bar charts with means and standard errors. It is easy enough to eyeball values and get approximately correct figures, but values obtained in this way are difficult to reproduce.</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="shinyDigitize_graph1.JPG" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="shinyDigitize_graph2.JPG" class="img-fluid"></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p>Example Graphs</p>
-</div>
-</div>
-</div>
-<p>Back in my CHEM 101 days, I learned a couple important concepts in scientific measurement. First, decide upon a method or technique and stick to it. For example, when measuring out liquid in graduated cylinders chemists always spot values at the bottom of the meniscus rather than the top. Second, it is important to have some understanding of how precise you can be while maintaining accuracy and reproducibility. Reading down to 0.1mL on a 100mL graduate cylinder marked off in 1mL increments is probably not justifiable, but reading it to the nearest 0.5mL probably is.</p>
-<p>Eyeballing values off a chart without a clear method is like taking scientific measurements with a common measuring cup. One can improve the measurement by taking additional steps (like overfilling, then scraping off the excess with knife) but these steps make an already time-consuming process more time consuming. Likewise, graphs and charts can be carefully annotated, zooming in and adding reference lines, but this is cumbersome and imprecise. What is needed is a software tool that minimizes effort and leads to reproducible values.</p>
-<section id="tools-for-data-extraction" class="level1">
-<h1>Tools for Data Extraction</h1>
-<p>Different software tools exist that can digitize graphs. Some of these can automatically detect and extract data from The following are just those that I have tried to use:</p>
-<ol type="1">
-<li>Plot Digitizer</li>
-<li><code>metagear</code></li>
-<li><code>juicr</code></li>
-<li><code>metaDigitise</code> and <code>shinyDigitise</code></li>
+<p>One afternoon this summer, I found myself running in the rain. It started soon after I did and I was thoroughly soaked before turning around. I like running because it gives me time to reflect, but running in the rain is not a particular pleasant experience. And so I reflected, how did I end up out here with soggy shoes, barely able to see through spotty glasses? The short answer is because I didn’t plan to.</p>
+<section id="self-help-or-self-sabotage" class="level2">
+<h2 class="anchored" data-anchor-id="self-help-or-self-sabotage">Self-Help or Self-Sabotage?</h2>
+<p>I have enjoyed a fair amount of self-help books and podcasts, such as the OG <em>Seven Habits</em> by Steven Covey. I think that many people have good things to say about time management, self-leadership, etc. One of the most helpful things I have taken away from these resources is the importance of reflection and intentionality. At some point, one needs to choose goals, order their activities towards achieving them, and assess their progress.</p>
+<p>However, this can easily be taken too far and result in a never-ending cycle of goal-setting and planning. These meta activities which were once meant to support the achievement of goals actually parasitize the time and energy required to make progress. At worst this can become self-reinforcing when a lack of progress motivates more assessment, reflection, goal-setting, and planning. Thus, planning becomes the end in-and-of itself and self-help becomes self-sabotage.</p>
+</section>
+<section id="making-progress" class="level2">
+<h2 class="anchored" data-anchor-id="making-progress">Making Progress</h2>
+<p>I fell into this self-sabotage trap during my PhD program. I spent many hours creating spreadsheets to help me plan and assess progress towards goals. I even learned about Gantt charts and tried to make them in R (spoilers: you can, but why?). Only when deadlines started carrying consequences did I prioritize progress and finish the bulk of my dissertation work in about six months.</p>
+<p>My final dissertation project was the biggest piece and consisted of a large meta-analysis. In a couple months I screened nearly 5000 abstracts and 500 documents, then coded several dozen variables for 150 of those documents. If you have done a meta-analysis then you would know that a meta-analysis with 150 documents (and 450 effect sizes) often takes teams of researchers and students the same or longer amount of time to complete. The only reason why I was able to work long hours efficiently for so long is because the progress I was making was obvious. The progress was itself motivating and spurred me on.</p>
+<p>At this point, you might say that I benefitted from a great deal of planning that I did do through the course of my program. And yes, it is true that I learned a lot, that I had practiced my skills for years, and that I was able to convert these into a sound project plan. Nevertheless, this planning was not some version of personal management or leadership. I did not budget time, journal my reflections, set internal or intermediate goals, gamify common tasks, or otherwise tinker with my behavior. These things would have stalled my progress and killed my motivation. I did know that I had a sound plan and that I was making progress. Thus, it was relatively easy to get up early and work.</p>
+</section>
+<section id="when-progress-is-not-apparent" class="level2">
+<h2 class="anchored" data-anchor-id="when-progress-is-not-apparent">When Progress is Not Apparent</h2>
+<p>Unfortunately, it is not always clear when progress is being made. This was certainly true for me in the first few years of my PhD when I did not know what I would do for my dissertation. In these cases, it seems to me that the best thing to do is to develop small, clearly-defined tasks that contribute towards larger goals. For me, some examples of such tasks include browsing the lastest journal issues or writing a blog post like this one.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Progress can then be defined as completing these tasks on some periodic basis.</p>
+<p>For example, when I was learning and developing a plan for my disseration, I should have defined progress as reading x papers a week with light notes. Instead of two years or so of haphazard work defined by anxious uncertainty, I would have quickly developed my interests <em>and</em> my capacity to pursue them. As a general rule, I don’t have regrets<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> but one of the few I do have is not using this time more effectively.</p>
+</section>
+<section id="running" class="level2">
+<h2 class="anchored" data-anchor-id="running">Running</h2>
+<p>Completing a marathon is an aspiration of mine. I do not know when I will, but I would like to in the next few years. I also aspire to live a long, productive life and to be as fit as my Grampa who could outwalk his grandkids in his 80s. I could plan and track progress towards completing a marathon, but I cannot plan and tinker my way into health. Yes, I know, it is important to develop a good lifestyle based on habits conducive to health. But, speaking from personal experience, it is difficult to develop an exercise habit when you are not fit to begin with.</p>
+<p>I ran in the rain that summer day because I didn’t plan to. I had developed the habit of going for a run when I had a free hour in the afternoon. I did not have a plan on which days I would run or at what time. Neither did I complicate my running with gear (just running shoes and earbuds) or routes (just a convenient loop) or target times (just go). These things are not bad and might be really helpful in reaching specific goals. But they can get in the way of making progress.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>For me, blogging is a way to exercise my writing skills and to pay back the many blog posts that I have found helpful or interesting.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Regrets don’t make sense to me. We are the people we are because of what we have done and experienced. If I had the ability to act on my regrets, changing my past accordingly, then I wouldn’t be the person I am today to regret it. The better question to me is what can I learn, how can I change in light of what I know now?<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-<p><a href="https://plotdigitizer.com">Plot Digitzer</a> has been around for some time and can be downloaded as a free, standalone application. If I were to to use Plot Digitizer I would probably use the online app version which has a better GUI and allows for different chart types to be selected. Unfortunately, the most useful features are kept for a paid version (at least its a one-time payment!) and the free version simply allows coordinates to be selected and exported.</p>
-<p>The other three are R packages that I have tried. <code>metagear</code> has several functions to facilitate systematic reviews and meta-analyses a few of which automatically extract data from select plot types <span class="citation" data-cites="LajFacilitatingSystematicReviews2016">(<a href="#ref-LajFacilitatingSystematicReviews2016" role="doc-biblioref">Lajeunesse 2016</a>)</span>. These functions take the plot as an argument (it’s file path that is) and returns a dataframe with the detected data points. Unfortunately, this automatic data extraction has not worked for me in the few cases that I attempted. The defaults of the function can be changed to account for variations in plot style and quality, but after a couple hours of fiddling, I couldn’t make it work for me. Also, it hasn’t been updated since 2021 (as of May 2024) and it is unclear when it will receive improvements.</p>
-<p><code>juicr</code> is an extension to the data extraction functions in <code>metagear</code> which adds a GUI and enables semi-automated functionality <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref">Ivimey-Cook et al. 2023</a>)</span>. Unfortunately, I ran into the same issues with the automatic data extraction as I did for <code>metagear</code>. <code>juicr</code> is in beta but it is unclear when it will receive further work, especially as it seems that only one person (Marc Lajeunesse) is contributing to its development. If this package does get more attention, I will definitely revisit it for future projects.</p>
-</section>
-<section id="metadigitise-and-shinydigitise" class="level1">
-<h1><code>metaDigitise</code> and <code>shinyDigitise</code></h1>
-<p>The <code>metaDigitise</code> R package is strictly for manual data extraction, but it provides very useful guardrails that greatly reduce the potential for user error and saves annotated plots for reproducible results. This package was introduced in 2016 and continues to be actively maintained <span class="citation" data-cites="PNNReproducibleFlexibleHighthroughput2019">(<a href="#ref-PNNReproducibleFlexibleHighthroughput2019" role="doc-biblioref">Pick, Nakagawa, and Noble 2019</a>)</span>. In 2022, the package authors introduced a shiny app that provides a GUI for a better user experience <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref">Ivimey-Cook et al. 2023</a>)</span>.</p>
-<p>The workflow is quite simple and begins with a function call to initialize the shiny app. In that app the user is asked to provide a folder path where plot images are kept and whether they want to edit previous extractions or extract from new plots. The steps to complete data extraction are clearly shown and the user is able to go back and change options on previous steps.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="shinyDigitize_screenshot1.JPG" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of the <code>shinyDigitise</code> GUI with a new extraction in progress</figcaption>
-</figure>
-</div>
-<p>Data extraction requires the user to select points on the image and what values those points are associated with. The examples in this blog post are mean/error plots but <code>shinyDigitise</code> works with five other plot types. The end result includes an annotated version of the plot and a dataframe of extracted values along with metadata, such as the file it was extracted from</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="shinyDigitize_screenshot2.JPG" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of a complete extraction</figcaption>
-</figure>
-</div>
-<p>One of the quality features is that the sample sizes of groups can be inputted which allows <code>shinyDigitise</code> to automatically calculate standard deviation from standard errors which are more commonly plotted.</p>
-</section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>I hope this look at <code>shinyDigitise</code> and other tools for data extraction was useful Support for manual data extraction is very helpful and goes a long way towards reproducible effect size calculations for meta-analyses. I do look forward to the development of <code>juicr</code> and other tools that automate or semi-automate this process as this is still relatively time-intensive. My guess is that more collaborations between software developers and research synthesists are needed to develop such tools.</p>
-
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-INN+AdviceImprovingReproducibility2023" class="csl-entry" role="listitem">
-Ivimey-Cook, Edward R., Daniel W. A. Noble, Shinichi Nakagawa, Marc J. Lajeunesse, and Joel L. Pick. 2023. <span>“Advice for Improving the Reproducibility of Data Extraction in Meta-Analysis.”</span> <em>Research Synthesis Methods</em> 14: 911–15.
-</div>
-<div id="ref-LajFacilitatingSystematicReviews2016" class="csl-entry" role="listitem">
-Lajeunesse, Marc J. 2016. <span>“Facilitating Systematic Reviews, Data Extraction and Meta-Analysis with the Metagear Package for r.”</span> <em>Methods in Ecology and Evolution</em> 7 (3): 323–30. <a href="https://doi.org/10.1111/2041-210X.12472">https://doi.org/10.1111/2041-210X.12472</a>.
-</div>
-<div id="ref-PNNReproducibleFlexibleHighthroughput2019" class="csl-entry" role="listitem">
-Pick, Joel L., Shinichi Nakagawa, and Daniel W. A. Noble. 2019. <span>“Reproducible, Flexible and High-Throughput Data Extraction from Primary Literature: <span class="nocase">The metaDigitise</span> r Package.”</span> <em>Methods in Ecology and Evolution</em> 10 (3): 426–31. <a href="https://doi.org/10.1111/2041-210X.13118">https://doi.org/10.1111/2041-210X.13118</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
