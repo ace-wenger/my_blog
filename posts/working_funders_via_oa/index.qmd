@@ -1,0 +1,98 @@
+---
+title: 'Discovering Funders via OpenAlex'
+author: "Aaron Wenger"
+date: "2025-12-03"
+categories:
+  - R
+  - Bibliometrics
+draft: TRUE
+---
+
+<!--
+- future posts:
+	- comparison of OA data to Crossref and Scopus
+	- exploring ROR data for understanding funders
+	- exploring ROR data for understanding research orgs
+- making a better openalexR
+	- don't lose information, keep everything if that is possible
+	- allow querying and returning only the number of hits, if possible
+-->
+
+Science education research (SER) is an interesting field which operates on the borders of several other long-established fields.
+It might be supposed that SER is a specialization of education research which has many public and private funders.
+But no, SER is principally funded by the National Science Foundation and not by the U.S. Department of Education.
+(At least in the U.S. - maybe in other countries the situation is different.)
+
+Recently, I was asked to help develop science education research projects with the goal of securing grant funding.
+The proposed projects would be in a particular topic (Nature of Science) and I wondered if I could identify all grant funders that have funded such projects.
+Rather than scouring journals or conducting systematically searching relevant papers, I tried to leverage existing bibliometric data.
+[OpenAlex](https://openalex.org/) is a metadatabase that centralizes and organizes such data on papers and other products (e.g., datasets) of scientific inquiry.
+In this post, I show how I used OpenAlex to find all U.S. funders of SER on this topic.
+
+# Funders in OpenAlex
+OpenAlex stores various entities (works, authors, sources, etc.) with each entity type recording different metadata.
+Thus, authors have affiliations and ORCID ID values while sources have abbreviated titles and ISSN numbers.
+Funders are their own entity type and are linked to works (such as journal articles) via grants.
+OpenAlex uses Crossref data to establish these links and then enriches funder metadata using the Research Organization Registry (ROR) and Wikidata.^[See the documentation on [funders](https://docs.openalex.org/api-entities/funders)]
+
+As noted by the OpenAlex developers, funding metadata is currently limited, but what is available can be used freely unlike most other services.
+For instance, Similar to Crossref - and thus OpenAlex - Scopus mines acknowledgment sections of papers for funding data.
+The company behind Scopus, Elsevier, also provides data on grants currently being offered and those awarded using publicly available data.^[see their (site)[https://www.elsevier.com/products/funding-institutional]]
+But both of these Esevier products require institutional license agreements to use.
+
+# Fetching via OpenAlexR
+```{r}
+#| echo: false
+library(openalexR)
+library(tidyverse)
+library(here)
+
+here()
+post_path <- here("posts", "working_funders_via_oa")
+```
+
+OpenAlex has a well-documented API which can be leveraged in R using the `openalexR` package.
+With `openalexR`, searches can constructed using an R script and the results returned as an R object.
+The main function `oa_fetch()` is used to specify a query, request it through the API, and return the results as a tibble (the default).
+Here, `oa_fetch()` is used to get a full list of U.S. funders and all relevant works.
+The search field `default.search` is used to specify that "nature of science" appears in the title, abstract, or fulltext (if available).
+`topics.subfield.id` specifies the subfield, which in this case is "education".
+
+```{r}
+#| eval: false
+
+funder_us <- oa_fetch(entity = "funders", country_code = "US")
+papers_nos <- oa_fetch(entity = "works", default.search = '"nature of science"', topics.subfield.id = 3304, verbose = TRUE) 
+```
+
+`openalexR` is very useful in combination with the OpenAlex API documentation.
+However, as of writing, the package does not return the grant (and therefore funder) field for works.
+This is certainly a bug and hopefully it will be fixed soon.
+
+# Fetching Manually
+The above limitation is minor as OpenAlex has a good web interface and is generous in allowing all search results to be downloaded in one click.
+After applying filters, the same set of metadata is downloaded as `.csv` file and imported into R.
+(Also, results were limited to 2015 and newer, and a more restrictive "title and abstract" field, excluding full text.)
+
+```{r}
+papers <- read_csv(here(post_path, "papers_nos_education.csv")) |> print()
+
+```
+
+```{r}
+funders <- read_csv(here(post_path, "funders_us.csv")) |> print()
+```
+
+
+
+papers_by_funder2 <- papers |>
+  separate_longer_delim(cols = grants.funder_display_name, delim = "|") |>
+  filter(!is.na(grants.funder_display_name)) |>
+  semi_join(funders, by = join_by(grants.funder_display_name == display_name)) |>
+  select(title, publication_year, type, primary_location.source.display_name, grants.funder_display_name, cited_by_count, relevance_score) |>
+  print()
+```
+
+# Funder Analysis
+
+# Final Thoughts

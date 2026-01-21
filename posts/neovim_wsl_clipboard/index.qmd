@@ -1,0 +1,9 @@
+---
+title: '
+author: "Aaron Wenger"
+date: "2025-12-03"
+categories:
+  - random thoughts
+  - essay
+draft: TRUE
+---

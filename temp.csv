@@ -1,0 +1,86 @@
+original,oa2df,comment
+abstract_inverted_index,abstract,reconstructed from inverted index
+apc_list.currency,apc.currency,NA
+apc_list.provenance,apc.provenance,NA
+apc_list.value,apc.value,NA
+apc_list.value_usd,apc.value_usd,NA
+apc_paid.currency,apc.currency,NA
+apc_paid.provenance,apc.provenance,NA
+apc_paid.value,apc.value,NA
+apc_paid.value_usd,apc.value_usd,NA
+authorships,authorships,NA
+best_oa_location,NA,NA
+biblio.first_page,first_page,NA
+biblio.issue,issue,NA
+biblio.last_page,last_page,NA
+biblio.volume,volume,NA
+citation_normalized_percentile,NA,NA
+cited_by_api_url,cited_by_api_url,NA
+cited_by_count,cited_by_count,NA
+cited_by_percentile_year,NA,NA
+concepts,concepts,NA
+corresponding_author_ids,NA,reconstructable from `author$is_corresponding`
+corresponding_institution_ids,NA,reconstructable from `author$is_corresponding`
+countries_distinct_count,NA,reconstructable from `author$institution_country_code`
+counts_by_year,counts_by_year,NA
+created_date,NA,NA
+datasets,NA,NA
+display_name,display_name,NA
+doi,doi,NA
+fwci,fwci,NA
+fulltext_origin,NA,NA
+grants,grants,NA
+has_fulltext,NA,NA
+id,id,NA
+ids.doi,ids.doi,NA
+ids.mag,ids.mag,NA
+ids.openalex,ids.openalex,NA
+ids.pmcid,ids.pmcid,NA
+ids.pmid,ids.pmid,NA
+indexed_in,NA,NA
+institution_assertions,NA,NA
+institutions_distinct_count,NA,reconstructable from `author$institution_id`
+is_paratext,is_paratext,NA
+is_retracted,is_retracted,NA
+keywords,keywords,NA
+language,language,NA
+locations,NA,NA
+locations_count,NA,NA
+mesh,NA,NA
+open_access.any_repository_has_fulltext,any_repository_has_fulltext,NA
+open_access.is_oa,is_oa_anywhere,see PR #135
+open_access.oa_status,oa_status,NA
+open_access.oa_url,oa_url,NA
+primary_location.is_accepted,NA,NA
+primary_location.is_oa,is_oa,NA
+primary_location.is_published,NA,NA
+primary_location.landing_page_url,landing_page_url,NA
+primary_location.license,license,NA
+primary_location.license_id,NA,NA
+primary_location.pdf_url,pdf_url,NA
+primary_location.source.display_name,source_display_name,NA
+primary_location.source.host_organization,host_organization,NA
+primary_location.source.host_organization_lineage,NA,NA
+primary_location.source.host_organization_lineage_names,NA,NA
+primary_location.source.host_organization_name,host_organization_name,NA
+primary_location.source.id,source_id,NA
+primary_location.source.is_core,NA,NA
+primary_location.source.is_in_doaj,NA,NA
+primary_location.source.is_oa,NA,NA
+primary_location.source.issn,NA,NA
+primary_location.source.issn_l,issn_l,NA
+primary_location.source.type,NA,NA
+primary_location.version,version,NA
+primary_topic,NA,first row of `topics`
+publication_date,publication_date,NA
+publication_year,publication_year,NA
+referenced_works,referenced_works,NA
+referenced_works_count,referenced_works_count,NA
+related_works,related_works,NA
+sustainable_development_goals,NA,NA
+title,title,NA
+topics,topics,NA
+type,type,NA
+type_crossref,NA,NA
+updated_date,NA,NA
+versions,NA,NA
