@@ -1,5 +1,6 @@
 ---
 title: "Extracting Statistics From Figures in R"
+date: 2024/04/20
 bibliography: "Data Extraction for MA.bib"
 ---
 

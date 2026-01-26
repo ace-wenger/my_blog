@@ -5,7 +5,7 @@ date: "2025-10-28"
 categories:
   - random thoughts
   - essay
-draft: TRUE
+draft: true
 ---
 
 A random rant against the use of 'utilize' and similar words.
