@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Aaron Wenger">
-<meta name="dcterms.date" content="2025-11-14">
+<meta name="dcterms.date" content="2026-01-26">
 <meta name="description" content="Example of how “flat” data can be restructured as a three-table relational database using Michigan K-12 education data.">
 
 <title>Relational Databases in R, Part 2 – Aaron Wenger</title>
@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-8fd1faf6fd93e4e6d207ae0f9db51d78.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 14, 2025</p>
+        <p class="date">January 26, 2026</p>
       </div>
     </div>
     
@@ -390,24 +390,24 @@ Table&nbsp;1: Examining potential key variables
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>mischool_database_dst <span class="sc">|&gt;</span> <span class="fu">count</span>(dst_code) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>mischool_database_isd <span class="sc">|&gt;</span> <span class="fu">count</span>(isd_code) <span class="sc">|&gt;</span> <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="tbl-anonymous-8080511" class="cell quarto-layout-panel anchored" data-tbl-cap="Checking primary key variables" data-tbl-subcap="[&quot;ISD Code&quot;,&quot;District Code&quot;,&quot;School Code&quot;]" data-layout-ncol="3">
+<div id="tbl-anonymous-9336656" class="cell quarto-layout-panel anchored" data-tbl-subcap="[&quot;ISD Code&quot;,&quot;District Code&quot;,&quot;School Code&quot;]" data-tbl-cap="Checking primary key variables" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div data-pagedtable="false"> <div class="table-caption"><p>ISD Code</p> {#tbl-anonymous-8080511-1}</div>
+<div data-pagedtable="false"> <div class="table-caption"><p>ISD Code</p> {#tbl-anonymous-9336656-1}</div>
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["bld_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div data-pagedtable="false"> <div class="table-caption"><p>District Code</p> {#tbl-anonymous-8080511-2}</div>
+<div data-pagedtable="false"> <div class="table-caption"><p>District Code</p> {#tbl-anonymous-9336656-2}</div>
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["dst_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div data-pagedtable="false"> <div class="table-caption"><p>School Code</p> {#tbl-anonymous-8080511-3}</div>
+<div data-pagedtable="false"> <div class="table-caption"><p>School Code</p> {#tbl-anonymous-9336656-3}</div>
   <script data-pagedtable-source="" type="application/json">
 {"columns":[{"label":["isd_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
