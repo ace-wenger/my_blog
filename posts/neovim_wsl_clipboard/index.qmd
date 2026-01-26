@@ -1,5 +1,5 @@
 ---
-title: '
+title: "Neovim compatibility with WSL clipboard"
 author: "Aaron Wenger"
 date: "2025-12-03"
 categories:
