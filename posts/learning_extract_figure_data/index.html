@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Aaron Wenger">
 <meta name="dcterms.date" content="2024-04-20">
 
 <title>Extracting Statistics From Figures in R – Aaron Wenger</title>
@@ -21,27 +22,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -63,9 +44,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-e7f4145358ce1d0cd37d8d374dbb44f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28ce2f92125236a284ff4f393e5b0d14.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7b59f535f4be280c95e9d201c1713015.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-28ce2f92125236a284ff4f393e5b0d14.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -98,7 +79,7 @@ div.csl-indent {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -317,6 +298,12 @@ div.csl-indent {
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Aaron Wenger </p>
+            </div>
+    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
@@ -332,49 +319,56 @@ div.csl-indent {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
 
 
 
-<p>I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report very few summary or inferential statistics in text or in tables. Instead, results are reported in bar charts with means and standard errors. It is easy enough to eyeball values and get approximately correct figures, but values obtained in this way are difficult to reproduce.</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
+<p>I have been working on a meta-analysis project and ran into an annoying but all-too-common situation for meta-analysts. A few of the papers eligible for my project report very few summary or inferential statistics in the text or tables. Instead, results are reported in bar charts with means and standard errors. It is easy enough to eyeball values and get approximately correct figures, but values obtained in this way are difficult to reproduce. Below are two examples of such graphs.</p>
+<div class="quarto-layout-panel" data-layout-nrow="2">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="shinyDigitize_graph1.JPG" class="img-fluid"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="shinyDigitize_graph2.JPG" class="img-fluid"></p>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p>Example Graphs</p>
 </div>
+<p>Back in my CHEM 101 days, I learned a couple important concepts in scientific measurement. First, decide upon a method or technique and stick to it. For example, when measuring out liquid in graduated cylinders chemists always spot values at the bottom of the meniscus rather than the top. Second, it is important to have some understanding of how precise you can be while maintaining accuracy and reproducibility. Reading down to 0.01mL on a graduate cylinder marked off in 0.1mL increments is probably not justifiable, but reading it to the nearest 0.05mL probably is.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="meniscus.JPG" class="img-fluid figure-img"></p>
+<figcaption>A meniscus, the upper curved surface of a liquid</figcaption>
+</figure>
 </div>
-</div>
-<p>Back in my CHEM 101 days, I learned a couple important concepts in scientific measurement. First, decide upon a method or technique and stick to it. For example, when measuring out liquid in graduated cylinders chemists always spot values at the bottom of the meniscus rather than the top. Second, it is important to have some understanding of how precise you can be while maintaining accuracy and reproducibility. Reading down to 0.1mL on a 100mL graduate cylinder marked off in 1mL increments is probably not justifiable, but reading it to the nearest 0.5mL probably is.</p>
-<p>Eyeballing values off a chart without a clear method is like taking scientific measurements with a common measuring cup. One can improve the measurement by taking additional steps (like overfilling, then scraping off the excess with knife) but these steps make an already time-consuming process more time consuming. Likewise, graphs and charts can be carefully annotated, zooming in and adding reference lines, but this is cumbersome and imprecise. What is needed is a software tool that minimizes effort and leads to reproducible values.</p>
+</div></div><p>Eyeballing values off a chart without a clear method is like taking scientific measurements with a common measuring cup. One can improve the measurement by taking additional steps (like overfilling, then scraping off the excess with knife) but these steps make an already time-consuming process more time consuming. Likewise, graphs and charts can be carefully annotated in common software, but this is cumbersome and imprecise. What is needed is a software tool that minimizes effort and leads to reproducible values.</p>
 <section id="tools-for-data-extraction" class="level1">
 <h1>Tools for Data Extraction</h1>
-<p>Different software tools exist that can digitize graphs. Some of these can automatically detect and extract data from The following are just those that I have tried to use:</p>
+<p>Different software tools exist that can digitize graphs. Some of these can automatically detect and extract data from uploaded images, returning slopes off a line graph, or a the cooridinates of all points on a scatterplot. The following are just those that I have tried to use:</p>
 <ol type="1">
 <li>Plot Digitizer</li>
 <li><code>metagear</code></li>
 <li><code>juicr</code></li>
 <li><code>metaDigitise</code> and <code>shinyDigitise</code></li>
 </ol>
-<p><a href="https://plotdigitizer.com">Plot Digitzer</a> has been around for some time and can be downloaded as a free, standalone application. If I were to to use Plot Digitizer I would probably use the online app version which has a better GUI and allows for different chart types to be selected. Unfortunately, the most useful features are kept for a paid version (at least its a one-time payment!) and the free version simply allows coordinates to be selected and exported.</p>
-<p>The other three are R packages that I have tried. <code>metagear</code> has several functions to facilitate systematic reviews and meta-analyses a few of which automatically extract data from select plot types <span class="citation" data-cites="LajFacilitatingSystematicReviews2016">(<a href="#ref-LajFacilitatingSystematicReviews2016" role="doc-biblioref">Lajeunesse 2016</a>)</span>. These functions take the plot as an argument (it’s file path that is) and returns a dataframe with the detected data points. Unfortunately, this automatic data extraction has not worked for me in the few cases that I attempted. The defaults of the function can be changed to account for variations in plot style and quality, but after a couple hours of fiddling, I couldn’t make it work for me. Also, it hasn’t been updated since 2021 (as of May 2024) and it is unclear when it will receive improvements.</p>
-<p><code>juicr</code> is an extension to the data extraction functions in <code>metagear</code> which adds a GUI and enables semi-automated functionality <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref">Ivimey-Cook et al. 2023</a>)</span>. Unfortunately, I ran into the same issues with the automatic data extraction as I did for <code>metagear</code>. <code>juicr</code> is in beta but it is unclear when it will receive further work, especially as it seems that only one person (Marc Lajeunesse) is contributing to its development. If this package does get more attention, I will definitely revisit it for future projects.</p>
+<p><a href="https://plotdigitizer.com">Plot Digitzer</a> has been around for some time and can be downloaded as a free, standalone application. If I were to to use Plot Digitizer I would probably use the online app version which has a better GUI and allows for different chart types to be selected. Unfortunately, the most useful features are kept for a paid version (at least its not a subscription). The free version simply allows coordinates to be selected and exported.</p>
+<p>The other three are R packages. <code>metagear</code> has several functions to facilitate systematic reviews and meta-analyses a few of which automatically extract data from select plot types <span class="citation" data-cites="LajFacilitatingSystematicReviews2016">(<a href="#ref-LajFacilitatingSystematicReviews2016" role="doc-biblioref"><strong>LajFacilitatingSystematicReviews2016?</strong></a>)</span>. These functions take the plot as an argument (it’s file path that is) and returns a dataframe with the detected data points. Unfortunately, this automatic data extraction has not worked for me in the few cases that I attempted. The defaults of the function can be changed to account for variations in plot style and quality, but after a couple hours of fiddling, I couldn’t make it work for me. Also, it hasn’t been updated since 2021 (as of May 2024) and it is unclear when it will receive improvements.</p>
+<p><code>juicr</code> is an extension to the data extraction functions in <code>metagear</code> which adds a GUI and enables semi-automated functionality <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref"><strong>INN+AdviceImprovingReproducibility2023?</strong></a>)</span>. Unfortunately, I ran into the same issues with the automatic data extraction as I did for <code>metagear</code>. <code>juicr</code> is in beta but it is unclear when it will receive further work, especially as it seems that only one person (Marc Lajeunesse) is contributing to its development. If this package does get more attention, I will definitely revisit it for future projects.</p>
 </section>
 <section id="metadigitise-and-shinydigitise" class="level1">
 <h1><code>metaDigitise</code> and <code>shinyDigitise</code></h1>
-<p>The <code>metaDigitise</code> R package is strictly for manual data extraction, but it provides very useful guardrails that greatly reduce the potential for user error and saves annotated plots for reproducible results. This package was introduced in 2016 and continues to be actively maintained <span class="citation" data-cites="PNNReproducibleFlexibleHighthroughput2019">(<a href="#ref-PNNReproducibleFlexibleHighthroughput2019" role="doc-biblioref">Pick, Nakagawa, and Noble 2019</a>)</span>. In 2022, the package authors introduced a shiny app that provides a GUI for a better user experience <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref">Ivimey-Cook et al. 2023</a>)</span>.</p>
+<p>The <code>metaDigitise</code> R package is strictly for manual data extraction, but it provides very useful guardrails that greatly reduce the potential for user error and saves annotated plots for reproducible results. This package was introduced in 2016 and continues to be actively maintained <span class="citation" data-cites="PNNReproducibleFlexibleHighthroughput2019">(<a href="#ref-PNNReproducibleFlexibleHighthroughput2019" role="doc-biblioref"><strong>PNNReproducibleFlexibleHighthroughput2019?</strong></a>)</span>. In 2022, the package authors introduced a shiny app that provides a GUI for a better user experience <span class="citation" data-cites="INN+AdviceImprovingReproducibility2023">(<a href="#ref-INN+AdviceImprovingReproducibility2023" role="doc-biblioref"><strong>INN+AdviceImprovingReproducibility2023?</strong></a>)</span>.</p>
 <p>The workflow is quite simple and begins with a function call to initialize the shiny app. In that app the user is asked to provide a folder path where plot images are kept and whether they want to edit previous extractions or extract from new plots. The steps to complete data extraction are clearly shown and the user is able to go back and change options on previous steps.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -396,20 +390,9 @@ div.csl-indent {
 <p>I hope this look at <code>shinyDigitise</code> and other tools for data extraction was useful Support for manual data extraction is very helpful and goes a long way towards reproducible effect size calculations for meta-analyses. I do look forward to the development of <code>juicr</code> and other tools that automate or semi-automate this process as this is still relatively time-intensive. My guess is that more collaborations between software developers and research synthesists are needed to develop such tools.</p>
 
 
-
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-INN+AdviceImprovingReproducibility2023" class="csl-entry" role="listitem">
-Ivimey-Cook, Edward R., Daniel W. A. Noble, Shinichi Nakagawa, Marc J. Lajeunesse, and Joel L. Pick. 2023. <span>“Advice for Improving the Reproducibility of Data Extraction in Meta-Analysis.”</span> <em>Research Synthesis Methods</em> 14: 911–15.
-</div>
-<div id="ref-LajFacilitatingSystematicReviews2016" class="csl-entry" role="listitem">
-Lajeunesse, Marc J. 2016. <span>“Facilitating Systematic Reviews, Data Extraction and Meta-Analysis with the Metagear Package for r.”</span> <em>Methods in Ecology and Evolution</em> 7 (3): 323–30. <a href="https://doi.org/10.1111/2041-210X.12472">https://doi.org/10.1111/2041-210X.12472</a>.
-</div>
-<div id="ref-PNNReproducibleFlexibleHighthroughput2019" class="csl-entry" role="listitem">
-Pick, Joel L., Shinichi Nakagawa, and Daniel W. A. Noble. 2019. <span>“Reproducible, Flexible and High-Throughput Data Extraction from Primary Literature: <span class="nocase">The metaDigitise</span> r Package.”</span> <em>Methods in Ecology and Evolution</em> 10 (3): 426–31. <a href="https://doi.org/10.1111/2041-210X.13118">https://doi.org/10.1111/2041-210X.13118</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

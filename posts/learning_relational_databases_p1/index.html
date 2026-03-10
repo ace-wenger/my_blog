@@ -23,27 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -65,9 +45,9 @@ div.csl-indent {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-e7f4145358ce1d0cd37d8d374dbb44f9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-960d9d362f81d399278ec3e29b622b37.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-28ce2f92125236a284ff4f393e5b0d14.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-7b59f535f4be280c95e9d201c1713015.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-28ce2f92125236a284ff4f393e5b0d14.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -360,7 +340,7 @@ div.csl-indent {
 
 
 <p>The first step in any data analysis workflow is ensuring that the data is clean and has a consistent, known structure. Analysis scripts that start with clean, consistent data are simpler, facilitate easy exploratory data analysis, and are extensible. There are at least several ways for data to be structured, but likely only one that is well-suited to the data analysis tools which will be used. The <code>tidyverse</code> tools in R - and other tools which follow “tidy data” conventions - are “tidy tools” meaning they take tidy data and output tidy data.</p>
-<p>Hadley Wickham, one of the main developers of <code>tidyverse</code> packages, wrote a technical paper explaining the concepts of tidy data and tidy tools <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref">Wickham 2014</a>)</span>. Thankfully he also coauthored a very approachable book <span class="citation" data-cites="WCGDataScienceImport2023">(<a href="#ref-WCGDataScienceImport2023" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span> in which tidy data is explained in simpler terms. In a few words, tidy data follows three principles:</p>
+<p>Hadley Wickham, one of the main developers of <code>tidyverse</code> packages, wrote a technical paper explaining the concepts of tidy data and tidy tools <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref"><strong>WicTidyData2014?</strong></a>)</span>. Thankfully he also coauthored a very approachable book <span class="citation" data-cites="WCGDataScienceImport2023">(<a href="#ref-WCGDataScienceImport2023" role="doc-biblioref"><strong>WCGDataScienceImport2023?</strong></a>)</span> in which tidy data is explained in simpler terms. In a few words, tidy data follows three principles:</p>
 <ol type="1">
 <li>each variable has its own column</li>
 <li>each observation has its own row</li>
@@ -380,7 +360,7 @@ Figure&nbsp;1: Tidy Data Principles
 <section id="introduction-to-relational-databases" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-relational-databases">Introduction to Relational Databases</h2>
 <p>Often when data is collected, it will have a nested or hierarchical structure. This especially true for education data. For instance, students are nested in classrooms which are nested in schools, which are nested in districts … you get the point. At each level of nesting different variables will be relevant which affects data collection and analysis. For example, students have test scores and schools have average test scores - if all individual test scores are collected, it doesn’t make sense to contact the principle and collect the school average score. And yet we may still collect other, non-aggregated information about the school (public/sectarian, urban/rural, etc.) which are relevant to the analysis.</p>
-<p>Each level in a hierarchical dataset is called an <em>observational unit</em>. In order to get this data into a tidy format it will need to restructured so that each observational unit gets it own table. Remember the third principle of tidy data? The third principle may be expressed differently as “each value is expressed only once” (my words) or “each observational unit has its own table” <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref">Wickham 2014</a>)</span>. In the above example, all student observations would be collected in one table and all school observations in another.</p>
+<p>Each level in a hierarchical dataset is called an <em>observational unit</em>. In order to get this data into a tidy format it will need to restructured so that each observational unit gets it own table. Remember the third principle of tidy data? The third principle may be expressed differently as “each value is expressed only once” (my words) or “each observational unit has its own table” <span class="citation" data-cites="WicTidyData2014">(<a href="#ref-WicTidyData2014" role="doc-biblioref"><strong>WicTidyData2014?</strong></a>)</span>. In the above example, all student observations would be collected in one table and all school observations in another.</p>
 <p>A set of tables are related to each using <em>key</em> variables, which allow the observations in one table to be related to observations in another. For example, in order to identify the school a student attends, a <em>school_id</em> variable is given to each student.</p>
 <p>There are two types of keys. One primary key in included in each table to uniquely identify each observation. One or more foreign keys are included in each table in order to relate observations to those tables where the key is primary. So on the student table, “student_id” is the primary key and “school_id” is the foreign key, corresponding to the primary key on the school table.</p>
 </section>
@@ -392,17 +372,9 @@ Figure&nbsp;1: Tidy Data Principles
 <p>In <a href="https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p2/">part two</a>, an example of a “flat” data file will be used to show how a relational database can be constructed. In <a href="https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p3/">part three</a> (coming soon), our relational database will be used to generate summary statistics and extended to a fourth table. <!-- In [part four](https://ace-wenger.github.io/my_blog/posts/learning_relational_databases_p4/) (coming soon), a --></p>
 
 
-
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-WicTidyData2014" class="csl-entry" role="listitem">
-Wickham, Hadley. 2014. <span>“Tidy <span>Data</span>.”</span> <em>Journal of Statistical Software</em> 59 (10).
-</div>
-<div id="ref-WCGDataScienceImport2023" class="csl-entry" role="listitem">
-Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd edition. Sebastopol: O’Reilly. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
