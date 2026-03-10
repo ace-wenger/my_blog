@@ -2,7 +2,8 @@
 title: "Running in the rain"
 author: "Aaron Wenger"
 date: "2025-10-28"
-file-modified: "2026-1-15"
+date-modified: "2026-1-15"
+categories:
   - random thoughts
   - essay
 ---

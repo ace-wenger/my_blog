@@ -6,7 +6,7 @@ categories:
   - general practice
   - academic resources
   - metaresearch
-image: zotero-screenshot.png
+image: "zotero-screenshot.png"
 draft: false
 ---
 ![](phd-comic-references.png)
