@@ -2,15 +2,18 @@
 title: "Running in the rain"
 author: "Aaron Wenger"
 date: "2025-10-28"
-categories:
+file-modified: "2026-1-15"
   - random thoughts
   - essay
 ---
 
+![Photo by <a href="https://unsplash.com/@r_shayesrehpour?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">reza shayestehpour</a> on <a href="https://unsplash.com/photos/grayscale-photography-of-raindrops-Nw_D8v79PM4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      ](running_rain.jpg)
+
 One afternoon this summer, I found myself running in the rain.
 It started soon after I did, thoroughly soaking me before I turned around.
 I like running because it gives me time to reflect, but running in the rain is not a particular pleasant experience.
-And so I reflected, how did I end up out here with soggy shoes, barely able to see through spotty glasses?
+How did I end up out here with soggy shoes, barely able to see through spotty glasses?
 The short answer is because I didn't plan to. 
 
 ## Self-Help or Self-Sabotage?
@@ -25,49 +28,61 @@ At worst this can become self-reinforcing when a lack of progress motivates more
 Thus, planning becomes the end in-and-of itself and self-help becomes self-sabotage.
 
 ## Making Progress
-I fell into this self-sabotage trap during my PhD program.
+I fell into this cycle during my PhD program.
 I spent many hours creating spreadsheets to help me plan and assess progress towards goals.
-I even learned about Gantt charts and tried to make them in R (spoilers: you can, but why?).
+I looked for project management resources and online courses.
+I learned about Gantt charts and tried to make them in R (spoilers: you can, but why?).
+And so a year passed in which the only measure of progress was a growing list of
+papers in my Zotero library.
 Only when deadlines started carrying consequences did I prioritize progress and finish the bulk of my dissertation work in about six months.
 
 My final dissertation project was the biggest piece and consisted of a large meta-analysis.
 In a couple months I screened nearly 5000 abstracts and 500 documents, then coded several dozen variables for 150 of those documents.
 If you have done a meta-analysis then you would know that a meta-analysis with 150 documents (and 450 effect sizes) often takes teams of researchers and students the same or longer amount of time to complete.
-The only reason why I was able to work long hours efficiently for so long is because the progress I was making was obvious.
-The progress was itself motivating and spurred me on.
+The only reason why I was able to work long hours efficiently for so long is because the progress was tangible and exciting.
+The progress was itself motivating.
 
-At this point, you might say that I benefitted from a great deal of planning that I did do through the course of my program.
-And yes, it is true that I learned a lot, that I had practiced my skills for years, and that I was able to convert these into a sound project plan.
-Nevertheless, this planning was not some version of personal management or leadership.
-I did not budget time, journal my reflections, set internal or intermediate goals, gamify common tasks, or otherwise tinker with my behavior.
+At this point, you might say that I did make significant progress during my stalled out year - it just wasn't visible.
+And yes, it is true that I learned a lot and practiced important skills - in
+hindsight, I was making some progress.
+Nevertheless, I consistently failed to reach self-set goals and the effort I
+spent setting those goals and tinkering with my behavior was truly wasted.
+When I finally made progress, it was not because I budgeted time, journaled, set goals, gamified common tasks, etc.
 These things would have stalled my progress and killed my motivation.
-I did know that I had a sound plan and that I was making progress.
-Thus, it was relatively easy to get up early and work.
+I only  knew that I had a sound plan and that I was making progress.
+Thus, it was relatively easy to get up early and work late.
 
 ## When Progress is Not Apparent
-Unfortunately, it is not always clear when progress is being made.
+Unfortunately, visible progress is not always possible.
+Sometimes you need to work without knowing when or where it will end.
 This was certainly true for me in the first few years of my PhD when I did not know what I would do for my dissertation.
-In these cases, I think that the best thing to do is to develop small, clearly-defined tasks that contribute towards larger goals.
+The best thing I have found to do is to develop small, clearly-defined tasks that overlap and share categories with larger goals.
 For me, some examples of such tasks include browsing the lastest journal issues or writing a blog post like this one.[^2]
 Progress can then be defined as completing these tasks on some periodic basis.
 
 [^2]: For me, blogging is a way to exercise my writing skills and to pay back the many blog posts that I have found helpful or interesting.
 
-For example, when I was learning and developing a plan for my disseration, I should have defined progress as reading x papers a week with light notes.
+When I was stalled out that one year developing a plan for my dissertation, I
+should have defined progress as writing summaries or short topical papers with
+the papers I was reading.
 Instead of two years or so of haphazard work defined by anxious uncertainty, I would have quickly developed my interests *and* my capacity to pursue them.
+I could have started writing my dissertation manuscript with dozens of pages
+already written on key topics. 
 As a general rule, I don't have regrets[^3] but one of the few I do have is not using this time more effectively.
 
 [^3]: Regrets don't make sense to me.
 We are the people we are because of what we have done and experienced.
 If I had the ability to act on my regrets, changing my past accordingly, then I wouldn't be the person I am today to regret it.
 The better question to me is what can I learn, how can I change in light of what I know now?
+Hopefully, others can also benefit from my experiences, and thus have fewer
+regrets themselves.
 
 ## Running
 Completing a marathon is an aspiration of mine.
 I do not know when I will, but I would like to in the next few years.
 I also aspire to live a long, productive life and to be as fit as my Grampa who could outwalk his grandkids in his 80s.
 I could plan and track progress towards completing a marathon, but I cannot plan and tinker my way into health.
-Speaking from personal experience, it is difficult to develop an exercise habit when you constantly change programs or types of exercise.
+Speaking from personal experience, it is difficult to develop an exercise habit when you constantly change exercise programs or types.
 
 I ran in the rain that summer day because I didn't plan to.
 I had developed the habit of going for a run when I had a free hour in the afternoon.

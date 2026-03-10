@@ -1,7 +1,7 @@
 ---
 title: "Relational Databases in R, Part 2"
 author: "Aaron Wenger"
-date: today
+date: "2023-07-20"
 description: Example of how "flat" data can be restructured as a three-table relational database using Michigan K-12 education data.
 draft: false
 categories: 
