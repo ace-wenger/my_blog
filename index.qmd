@@ -1,10 +1,7 @@
 ---
 title: "Aaron Wenger, PhD - Researcher and Evaluator"
 grid:
-  sidebar-width: 250px
-  body-width: 700px
-  margin-width: 250px
-  gutter-width: 2rem
+  body-width: 900px
 about:
   template: solana
   links:
@@ -21,9 +18,7 @@ resources: "Resume__research.pdf"
 comments: false
 ---
 
-::: {.column-margin}
-![](home_pic.jpg)
-:::
+<img src="home_pic.jpg" style="float: right; margin: 0 0 1rem 2rem; width: 300px; border-radius: 4px;" />
 
 I'm a researcher and educator interested in the critical evaluation of education research and its application to actual students and teachers.
 I recently graduated with a PhD from the Mallinson Institute for Science Education at Western Michigan University.
@@ -45,6 +40,10 @@ See my [CV](CV.pdf) for a complete listing of my education, work, and experience
 - Introductory and advanced biology subjects, particularly microbiology and molecular biology
 - History of educational psychology and science education
 - Statistical and computational research methods using R, especially computational reproducibility
+
+```{=html}
+{{< include tip-of-the-day.html >}}
+```
 
 <!-- ## Selected writings -->
 
