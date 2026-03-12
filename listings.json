@@ -11,11 +11,13 @@
     ]
   },
   {
-    "listing": "/presentations.html",
-    "items": []
+    "listing": "/papers.html",
+    "items": [
+      "/papers/software_for_SRMA_collection/index.html"
+    ]
   },
   {
-    "listing": "/papers.html",
+    "listing": "/presentations.html",
     "items": []
   }
 ]

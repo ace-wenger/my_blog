@@ -2,46 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.aaroncwenger.com/posts.html</loc>
-    <lastmod>2026-03-10T19:31:24.327Z</lastmod>
+    <lastmod>2026-03-12T02:19:34.570Z</lastmod>
   </url>
   <url>
-    <loc>https://www.aaroncwenger.com/presentations.html</loc>
-    <lastmod>2026-03-10T19:31:24.470Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/posts/learning_relational_databases_p1/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/posts/fft_doing_unpleasant_things/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.350Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/posts/reference_managers/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.413Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.327Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/posts/learning_renv/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.360Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/posts/learning_extract_figure_data/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.359Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.aaroncwenger.com/posts/learning_relational_databases_p2/index.html</loc>
-    <lastmod>2026-03-10T19:31:24.360Z</lastmod>
+    <loc>https://www.aaroncwenger.com/papers/software_for_SRMA_collection/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.570Z</lastmod>
   </url>
   <url>
     <loc>https://www.aaroncwenger.com/papers.html</loc>
-    <lastmod>2026-03-10T19:31:24.327Z</lastmod>
+    <lastmod>2026-03-12T02:19:34.569Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/posts/learning_relational_databases_p2/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.602Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/posts/learning_extract_figure_data/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.600Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/posts/learning_renv/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.602Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.569Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/posts/reference_managers/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/posts/fft_doing_unpleasant_things/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/posts/learning_relational_databases_p1/index.html</loc>
+    <lastmod>2026-03-12T02:19:34.601Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.aaroncwenger.com/presentations.html</loc>
+    <lastmod>2026-03-12T02:19:34.713Z</lastmod>
   </url>
   <url>
     <loc>https://www.aaroncwenger.com/about.html</loc>
-    <lastmod>2026-03-10T19:31:24.308Z</lastmod>
+    <lastmod>2026-03-12T02:19:34.549Z</lastmod>
   </url>
 </urlset>
