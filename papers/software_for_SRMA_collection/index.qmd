@@ -1,0 +1,7 @@
+---
+title: "Towards Automating Data Collection in Meta-Research"
+subtitle: "A survey of existing tools and remaining challenges"
+author: "Aaron Wenger"
+date: "2026-03-10"
+
+---

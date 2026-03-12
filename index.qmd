@@ -1,5 +1,10 @@
 ---
-title: "About Me"
+title: "Aaron Wenger, PhD - Researcher and Evaluator"
+grid:
+  sidebar-width: 250px
+  body-width: 700px
+  margin-width: 250px
+  gutter-width: 2rem
 about:
   template: solana
   links:
@@ -8,14 +13,17 @@ about:
       href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/ace-wenger
     - text: "{{< fa envelope >}} Email"
     - text: "{{< ai orcid >}} ORCID"
     - text: "{{< ai osf >}} OSF"
-image: home_pic.jpg
 resources: "Resume__research.pdf"
 comments: false
 ---
+
+::: {.column-margin}
+![](home_pic.jpg)
+:::
 
 I'm a researcher and educator interested in the critical evaluation of education research and its application to actual students and teachers.
 I recently graduated with a PhD from the Mallinson Institute for Science Education at Western Michigan University.
